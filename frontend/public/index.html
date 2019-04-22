@@ -2,15 +2,196 @@
 <html>
 <head>
   <title>My first Vue app</title>
+  <!-- styles -->
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css">
+
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+  <script src="./main.js"></script>
 </head>
-<body>
-  <div id="app">
-    {{ info }}
+<body class="max-width mx-auto px3 ltr">
+
+<div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+
+          <li><a href="...">Home</a></li>
+          <li><a href="...">Writing</a></li>
+          <li><a href="...">About</a></li>
+
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+
+        <li><a class="icon" href=""><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+        <li><a class="icon" href=""><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href=""><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+      </ul>
+
+    </div>
+    <div id="toc">
+      <li class="toc-item toc-level-1"><a class="toc-link" href="#Level-1">
+          <span class="toc-number">Level 1</span>
+          <span class="toc-text">Text</span></a>
+        <ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Level-2">
+              <span class="toc-number">1.</span>
+              <span class="toc-text">Level 2</span></a>
+            <ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Level-3">
+                  <span class="toc-number">1.1.</span>
+                  <span class="toc-text">Level 3</span></a>
+              </li>
+            </ol></li>
+        </ol>
+      </li>
+    </div>
+  </span>
+</div>
+
+<div class="content index py4">
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+
+      <h1 class="posttitle" itemprop="name headline">
+        Title
+      </h1>
+
+      <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Author</span>
+      </span>
+
+        <div class="postdate">
+          <time datetime="2019-04-22T12:35:34.000Z" itemprop="datePublished">2019-04-22</time>
+        </div>
+
+        <div class="article-tag">
+          <i class="fas fa-tag"></i>
+          <a class="tag-link" href="/tags/tag_name/">tag_name</a>,
+          <a class="tag-link" href="/tags/tag_name2/">tag_name2</a>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="content" itemprop="articleBody">
+      <blockquote>
+        <p>Post</p>
+      </blockquote>
+
+      <p id="app" >{{ info }}</p>
+    </div>
+  </article>
+
+  <div id="footer-post-container">
+    <div id="footer-post">
+
+      <div id="nav-footer" style="display: none">
+        <ul>
+
+          <li><a href="...">Home</a></li>
+
+          <li><a href="...">Writing</a></li>
+
+          <li><a href="...">About</a></li>
+
+        </ul>
+      </div>
+
+      <div id="toc-footer" style="display: none">
+        <ol class="toc">
+          <li class="toc-item toc-level-1"><a class="toc-link" href="#Level-1">
+              <span class="toc-number">Level 1</span>
+              <span class="toc-text">Text</span></a>
+            <ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Level-2">
+                  <span class="toc-number">1.</span>
+                  <span class="toc-text">Level 2</span></a>
+                <ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Level-3">
+                      <span class="toc-number">1.1.</span>
+                      <span class="toc-text">Level 3</span></a>
+                  </li>
+                </ol></li>
+            </ol>
+          </li>
+        </ol>
+        </div>
+
+      <div id="share-footer" style="display: none">
+        <ul>
+          <li><a class="icon" href=""><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+          <li><a class="icon" href=""><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+        </ul>
+
+      </div>
+
+      <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+      </div>
+
+    </div>
   </div>
 
-  <script>
+
+  <footer id="footer">
+    <div class="footer-left">
+      Copyright &copy; 2019 Martin Heinz
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+
+          <li><a href="...">Home</a></li>
+          <li><a href="...">Writing</a></li>
+          <li><a href="...">About</a></li>
+
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</div>
+
+<script>
     var app = new Vue({
     el: '#app',
     data () {
@@ -23,7 +204,7 @@
         .get('http://localhost:1234/api/v1/')
         .then(response => (this.info = response))
     }
-})
-  </script>
+  })
+</script>
 </body>
 </html>
