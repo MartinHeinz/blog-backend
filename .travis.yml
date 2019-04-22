@@ -15,3 +15,6 @@ script:
   - docker build -t blog-backend ./backend
   # - docker-compose build
   # - docker-compose run test
+
+notifications:
+  email: false

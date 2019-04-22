@@ -3,19 +3,27 @@
 <head>
   <title>My first Vue app</title>
   <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div id="app">
-    {{ message }}
+    {{ info }}
   </div>
 
   <script>
     var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello Vue!'
+    el: '#app',
+    data () {
+      return {
+        info: null
       }
-    })
+    },
+    mounted () {
+      axios
+        .get('http://localhost:1234/api/v1/')
+        .then(response => (this.info = response))
+    }
+})
   </script>
 </body>
 </html>

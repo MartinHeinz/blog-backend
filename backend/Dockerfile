@@ -10,6 +10,6 @@ RUN apk --no-cache add ca-certificates
 COPY --from=builder /go/app .
 
 CMD ./app
-EXPOSE 8080
+EXPOSE 1234
 
-# docker run -p 8080:8080 <image_id>
+# docker run -p 1234:1234 <image_id>s

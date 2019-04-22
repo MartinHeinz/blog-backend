@@ -1,6 +1,13 @@
 new Vue({
   el: '#app',
-  data: {
-    message: 'Hello Vue.js!'
+  data () {
+    return {
+      data: null
+    }
+  },
+  mounted () {
+    axios
+      .get('go-backend/v1/')
+      .then(response => (this.data = response))
   }
 })
