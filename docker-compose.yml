@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services: 
   backend:
     image: martinheinz/blog_backend:latest
@@ -18,7 +18,7 @@ services:
     build: 
       context: ./frontend
       dockerfile: ./Dockerfile
-    depends_on: 
+    depends_on:
       - backend
     ports:
       - 8080:8080
