@@ -7,13 +7,17 @@
             {value: 'About', url: '/about'}]">
         </BaseMenu>
         <Post info="Welcome to Your Vue.js App"/>
-        <Footer/>
+        <BaseFooter :items="[
+            {value: 'Home', url: '/home'},
+            {value: 'Contact', url: '/contact'},
+            {value: 'About', url: '/about'}]">
+        </BaseFooter>
     </div>
 </template>
 
 <script>
 import Post from './components/Post.vue';
-import Footer from './components/Footer.vue';
+import BaseFooter from './components/BaseFooter.vue';
 import BaseMenu from './components/BaseMenu.vue';
 
 export default {
@@ -21,7 +25,7 @@ export default {
     components: {
         BaseMenu,
         Post,
-        Footer,
+        BaseFooter,
     },
 };
 </script>

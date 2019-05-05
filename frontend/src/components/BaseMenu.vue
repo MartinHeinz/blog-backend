@@ -38,7 +38,6 @@ export default {
         vertical-align: middle;
         border-right: 1px dotted #2bbc8a;
         text-align: -webkit-match-parent;
-
     }
 
     li:last-child {
