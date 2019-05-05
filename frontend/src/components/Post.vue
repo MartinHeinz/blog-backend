@@ -1,6 +1,6 @@
 <template>
-    <div class="content index py4">
-        <h1>{{ info }}</h1>
+    <div class="content" itemprop="articleBody">
+        <h1>{{ text }}</h1>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import axios from 'axios';
 export default {
     name: 'Post',
     props: {
-        info: String,
+        text: String,
     },
     mounted() {
         axios

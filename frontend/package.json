@@ -13,11 +13,11 @@
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "lodash": "^4.17.11",
+    "@fortawesome/fontawesome-free": "^5.8.1",
     "vue": "^2.6.10",
     "vuetify": "^1.5.14"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.1",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-unit-jest": "^3.7.0",
