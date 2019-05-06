@@ -2,7 +2,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import Vue from 'vue';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import moment from 'moment'
+import moment from 'moment';
 import Vuetify from 'vuetify';
 
 import App from './App.vue';
@@ -49,11 +49,7 @@ Vue.use(Vuetify, {
     iconfont: 'fa',
 });
 
-Vue.filter('formatDate', function(value) {
-    if (value) {
-        return moment(String(value)).format('MM/DD/YYYY hh:mm')
-    }
-});
+Vue.filter('formatDate', value => moment(String(value)).format('MM/DD/YYYY hh:mm'));
 
 new Vue({
     render: h => h(App),
