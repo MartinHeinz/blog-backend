@@ -10,7 +10,7 @@
             url_next: 'url_previous_test',
                 }">
         </Navigation>
-        <PostHeader title="This is title" author="Martin" published="05-05-2019"/>
+        <PostHeader title="This is title" author="Martin" published="05-05-2019 17:43"/>
         <Post text="Body of post"/>
         <BaseFooter :items="[
             {value: 'Home', url: '/home'},

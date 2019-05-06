@@ -11,7 +11,7 @@
             </span>
 
             <div class="postdate">
-                <time datetime="..." itemprop="datePublished">{{published}}</time>
+                <time :datetime="published | formatDate" itemprop="datePublished">{{published}}</time>
             </div>
 
             <div class="article-tag">
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-// TODO use Moment JS for datetime="..."
 // TODO add parameters for tags
 // TODO add css
 export default {
