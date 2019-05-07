@@ -1,5 +1,4 @@
 <template>
-    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
 
         <h1 class="posttitle" itemprop="name headline">{{title}}</h1>
@@ -17,20 +16,25 @@
 
             <div class="article-tag">
                 <v-icon>fas fa-tag</v-icon>
-                <a class="tag-link" href="/tags/.../">...</a>, <a class="tag-link" href="/tags/.../">...</a>
+                <BaseTag v-for="tag in tags"
+                              v-bind:url="tag.url"
+                              v-bind:name="tag.name"
+                              v-bind:key="tag.key">
+                </BaseTag>
             </div>
 
         </div>
     </header>
-    </article>
 </template>
 
 <script>
-// TODO add parameters for tags
+import BaseTag from './BaseTag.vue';
+
 export default {
     name: 'PostHeader',
-    components: { },
+    components: { BaseTag },
     props: {
+        tags: Array,
         title: String,
         author: String,
         published: String,
@@ -66,33 +70,23 @@ export default {
         line-height: 1.25;
     }
 
-    article header .meta {
+    header .meta {
         margin-top: 0;
         margin-bottom: 1rem;
     }
-    article header .meta * {
+    header .meta * {
         color: #ccc;
         font-size: 0.85rem;
     }
 
-    article header .author {
+    header .author {
         text-transform: uppercase;
         letter-spacing: 0.01em;
         font-weight: 700;
     }
 
-    article header .postdate {
+    header .postdate {
         display: inline;
-    }
-
-    .article-tag .tag-link {
-        background-image: linear-gradient(transparent, transparent 10px, #d480aa 10px, #d480aa);
-        background-position: bottom;
-        background-size: 100% 6px;
-        background-repeat: repeat-x;
-    }
-    .article-tag .tag-link:before {
-        content: "#";
     }
 
     @media (min-width: 480px) {

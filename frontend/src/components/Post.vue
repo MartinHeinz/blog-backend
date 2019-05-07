@@ -1,7 +1,10 @@
 <template>
-    <div class="content" itemprop="articleBody">
-        <h1>{{ text }}</h1>
-    </div>
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+        <div class="content" itemprop="articleBody">
+            <h1>{{ text }}</h1>
+        </div>
+    </article>
 </template>
 
 <script>
