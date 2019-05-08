@@ -2,7 +2,7 @@
     <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
 
         <div class="content" itemprop="articleBody">
-            <h1>{{ text }}</h1>
+            <p>{{ text }}</p>
         </div>
     </article>
 </template>

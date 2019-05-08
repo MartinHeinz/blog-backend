@@ -43,11 +43,20 @@ export default {
 </script>
 
 <style>
-    a:hover {
+
+    .article-tag .tag-link {
+        background-image: linear-gradient(transparent, transparent 10px, #d480aa 10px, #d480aa);
+        background-position: bottom;
+        background-size: 100% 6px;
+        background-repeat: repeat-x;
+    }
+
+
+    .tag-link a:hover {
         box-shadow: inset 0 0px 0 white, inset 0 -2px 0 #d480aa;
     }
 
-    a {
+    .tag-link a {
         color: #c9cacc;
         text-decoration: none;
         background-image: linear-gradient(transparent, transparent 5px, #c9cacc 5px, #c9cacc);
@@ -94,7 +103,15 @@ export default {
             display: inline;
         }
         .article-tag:before {
-            content: "|";
+            content: " | ";
         }
+    }
+
+    span {
+        margin: 0 5px;
+    }
+
+    span:first-child {
+        margin-left:0;
     }
 </style>
