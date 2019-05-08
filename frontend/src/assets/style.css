@@ -697,32 +697,15 @@ body {
 #header-post #menu-icon {
     float: right;
     margin-right: 2rem;
-    margin-left: 15px;
+    margin-left: 25px;
 }
-#header-post #menu-icon:hover {
-    color: #2bbc8a;
-}
+
 #header-post #menu-icon-tablet {
     float: right;
     margin-right: 2rem;
-    margin-left: 15px;
+    margin-left: 25px;
 }
-#header-post #menu-icon-tablet:hover {
-    color: #2bbc8a;
-}
-#header-post #top-icon-tablet {
-    position: fixed;
-    right: 2rem;
-    bottom: 2rem;
-    margin-right: 2rem;
-    margin-left: 15px;
-}
-#header-post #top-icon-tablet:hover {
-    color: #2bbc8a;
-}
-#header-post .active {
-    color: #2bbc8a;
-}
+
 #header-post #menu {
     visibility: hidden;
     margin-right: 2rem;

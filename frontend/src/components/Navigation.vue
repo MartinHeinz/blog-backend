@@ -1,9 +1,20 @@
 <template>
     <div id="header-post">
-        <a id="menu-icon" href="#" class="active"><i class="fas fa-bars fa-lg"></i></a>
-        <a id="menu-icon-tablet" href="#" class="active"><i class="fas fa-bars fa-lg"></i></a>
-        <a id="top-icon-tablet" href="#" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-        <span id="menu" style="visibility: visible;">
+        <v-icon id="menu-icon" href="#"
+                v-on:click="active = !active"
+                v-bind:class="{ 'menu-active' : active }">fas fa-bars fa-lg</v-icon>
+
+        <v-icon id="menu-icon-tablet" href="#"
+                v-on:click="active = !active"
+                v-bind:class="{ 'menu-active' : active }">fas fa-bars fa-lg</v-icon>
+
+        <v-icon id="top-icon-tablet" href="#" style="display:none;"
+                v-on:click="active = !active"
+                v-bind:class="{ 'menu-active' : active }">fas fa-chevron-up fa-lg</v-icon>
+
+
+        <span id="menu" style="visibility: visible;"
+              v-show="active">
             <BaseMenu :items=items></BaseMenu>
             <br>
             <MenuActions
@@ -11,13 +22,13 @@
                     :url_next=actions.url_next>
             </MenuActions>
         <br>
-        <div id="share" style="display: none">
-          <ul>
-    <!--  <li><a class="icon" href=""><i class="fab fa-facebook " aria-hidden="true"></i></a></li>  social sharing here-->
-      </ul>
+            <div id="share" style="display: none">
+              <ul>
+                <!--  <li><a class="icon" href=""><i class="fab fa-facebook " aria-hidden="true"></i></a></li>  social sharing here-->
+              </ul>
 
-        </div>
-      </span>
+            </div>
+        </span>
     </div>
 </template>
 
@@ -33,5 +44,46 @@ export default {
         items: Array,
         actions: Object,
     },
+    data() {
+        return {
+            active: false,
+        };
+    },
 };
 </script>
+
+
+<style>
+    #header-post #menu-icon:hover {
+        color: #2bbc8a;
+    }
+
+    #header-post #menu-icon-tablet:hover {
+        color: #2bbc8a;
+    }
+    #header-post #top-icon-tablet {
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        margin-right: 2rem;
+        margin-left: 15px;
+    }
+    #header-post #top-icon-tablet:hover {
+        color: #2bbc8a;
+    }
+    #header-post .active {
+        color: #2bbc8a;
+    }
+
+    #menu-icon, #menu-icon-tablet, #top-icon-tablet {
+        margin-top: 5px;
+    }
+
+    .menu-inactive {
+        color: #c9cacc;
+    }
+    .menu-active {
+        color: #2bbc8a;
+    }
+
+</style>
