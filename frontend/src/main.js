@@ -49,6 +49,10 @@ Vue.use(Vuetify, {
     iconfont: 'fa',
 });
 
+const SocialSharing = require('vue-social-sharing');
+
+Vue.use(SocialSharing);
+
 Vue.filter('formatDate', value => moment(String(value)).format('MM/DD/YYYY hh:mm'));
 
 new Vue({

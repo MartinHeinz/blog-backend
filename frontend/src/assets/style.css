@@ -708,7 +708,6 @@ body {
 
 #header-post #menu {
     visibility: hidden;
-    margin-right: 2rem;
 }
 #header-post #nav {
     color: #2bbc8a;
@@ -740,30 +739,7 @@ body {
 #header-post #nav ul li:last-child a {
     margin-right: 0;
 }
-#header-post #actions {
-    float: right;
-    margin-top: 2rem;
-    margin-right: 2rem;
-    width: 100%;
-    text-align: right;
-}
-#header-post #actions ul {
-    display: block;
-}
-#header-post #actions .info {
-    display: block;
-    font-style: italic;
-}
-#header-post #share {
-    clear: both;
-    padding-top: 1rem;
-    padding-right: 2rem;
-    text-align: right;
-}
-#header-post #share li {
-    display: block;
-    margin: 0;
-}
+
 #header-post #toc {
     float: right;
     clear: both;

@@ -10,12 +10,13 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "lodash": "^4.17.11",
-    "@fortawesome/fontawesome-free": "^5.8.1",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
+    "vue-social-sharing": "^2.4.3",
     "vuetify": "^1.5.14"
   },
   "devDependencies": {

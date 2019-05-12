@@ -22,12 +22,8 @@
                     :url_next=actions.url_next>
             </MenuActions>
         <br>
-            <div id="share" style="display: none">
-              <ul>
-                <!--  <li><a class="icon" href=""><i class="fab fa-facebook " aria-hidden="true"></i></a></li>  social sharing here-->
-              </ul>
 
-            </div>
+        <SocialSharingList></SocialSharingList>
         </span>
     </div>
 </template>
@@ -36,10 +32,11 @@
 
 import BaseMenu from './BaseMenu.vue';
 import MenuActions from './MenuActions.vue';
+import SocialSharingList from './SocialSharingList.vue';
 
 export default {
     name: 'Navigation',
-    components: { BaseMenu, MenuActions },
+    components: { BaseMenu, MenuActions, SocialSharingList },
     props: {
         items: Array,
         actions: Object,
@@ -47,6 +44,7 @@ export default {
     data() {
         return {
             active: false,
+            path: window.location.href,
         };
     },
 };
