@@ -6,14 +6,14 @@ matrix:
     sudo: required
     services:
     - docker
-    jobs:
-      include:
-      - stage: test
-        script: go test -v ./backend/src/app
-      - stage: build
-        script:
-        - docker build -t blog-frontend ./frontend
-        - docker build -t blog-backend ./backend
+    script: go test -v ./backend/src/app
+
+  - language: node_js
+    node_js:
+      - "node"
+    script:
+      - docker build -t blog-frontend ./frontend
+      - docker build -t blog-backend ./backend
   - language: java
     addons:
       sonarcloud:
