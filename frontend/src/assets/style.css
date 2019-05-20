@@ -750,7 +750,7 @@ body {
     max-height: calc(95vh - 7rem);
     text-align: right;
 }
-#header-post #toc a:hover {
+#header-post #toc div:hover {
     color: #d480aa;
 }
 #header-post #toc .toc-level-1 > .toc-link {

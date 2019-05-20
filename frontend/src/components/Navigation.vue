@@ -21,9 +21,15 @@
                     :url_previous=actions.url_previous
                     :url_next=actions.url_next>
             </MenuActions>
-        <br>
+            <br>
 
-        <SocialSharingList></SocialSharingList>
+            <SocialSharingList></SocialSharingList>
+            <TableOfContents id="toc"
+                             :label="tree.label"
+                             :nodes="tree.nodes"
+                             :href="tree.href"
+                             :depth="1">
+            </TableOfContents>
         </span>
     </div>
 </template>
@@ -33,10 +39,13 @@
 import BaseMenu from './BaseMenu.vue';
 import MenuActions from './MenuActions.vue';
 import SocialSharingList from './SocialSharingList.vue';
+import TableOfContents from './TableOfContents.vue';
 
 export default {
     name: 'Navigation',
-    components: { BaseMenu, MenuActions, SocialSharingList },
+    components: {
+        BaseMenu, MenuActions, SocialSharingList, TableOfContents,
+    },
     props: {
         items: Array,
         actions: Object,
@@ -45,6 +54,34 @@ export default {
         return {
             active: false,
             path: window.location.href,
+            tree: {
+                nodes: [
+                    {
+                        label: 'item1',
+                        href: '/item1',
+                        nodes: [
+                            {
+                                label: 'item1.1',
+                                href: '/item1.1',
+                            },
+                            {
+                                label: 'item1.2',
+                                href: '/item1.2',
+                                nodes: [
+                                    {
+                                        label: 'item1.2.1',
+                                        href: '/item1.2.1',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        label: 'item2',
+                        href: '/item2',
+                    },
+                ],
+            },
         };
     },
 };
@@ -84,4 +121,12 @@ export default {
         color: #2bbc8a;
     }
 
+    #toc {
+        overflow: auto;
+        margin-top: 1rem;
+        padding-right: 2rem;
+        max-width: 20em;
+        max-height: calc(95vh - 7rem);
+        text-align: right;
+    }
 </style>
