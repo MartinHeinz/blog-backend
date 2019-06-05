@@ -92,6 +92,7 @@ export default {
         text-transform: uppercase;
         letter-spacing: 0.01em;
         font-weight: 700;
+        margin: 0 5px;
     }
 
     header .postdate {
@@ -105,10 +106,6 @@ export default {
         .article-tag:before {
             content: " | ";
         }
-    }
-
-    span {
-        margin: 0 5px;
     }
 
     span:first-child {

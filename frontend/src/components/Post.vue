@@ -26,3 +26,9 @@ export default {
     },
 };
 </script>
+
+<style>
+
+    span {
+    }
+</style>
