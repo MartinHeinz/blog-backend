@@ -6,8 +6,9 @@ matrix:
       - docker
     before_script: cd backend
     script:
+      - go mod vendor
       - make build
-      - test -f bin/linux_amd64/myapp
+      - test -f bin/linux_amd64/blog_backend
       - make all-container
       - docker images | grep "^martinheinz/blog_backend.*__linux_amd64"
       - make test
