@@ -1,19 +1,22 @@
 matrix:
   include:
   - language: go
-    go:
-    - 1.11.x
     sudo: required
     services:
-    - docker
-    script: go test -v ./backend/src/app
+      - docker
+    before_script: cd backend
+    script:
+      - make build
+      - test -f bin/linux_amd64/myapp
+      - make all-container
+      - docker images | grep "^martinheinz/blog_backend.*__linux_amd64"
+      - make test
 
   - language: node_js
     node_js:
       - "node"
     script:
       - docker build -t blog-frontend ./frontend
-      - docker build -t blog-backend ./backend
   - language: java
     addons:
       sonarcloud:

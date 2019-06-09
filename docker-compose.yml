@@ -5,11 +5,14 @@ services:
     build: 
       context: ./backend
       dockerfile: ./Dockerfile
+    container_name: blog_backend
     healthcheck:
         test: ["CMD", "curl", "-f", "backend"]
         interval: 30s
         timeout: 10s
         retries: 5
+    depends_on:
+      - blog_db
     ports:
       - 1234:1234
 
@@ -18,7 +21,35 @@ services:
     build: 
       context: ./frontend
       dockerfile: ./Dockerfile
+    container_name: blog_frontend
     depends_on:
       - backend
     ports:
       - 8080:8080
+
+  blog_db:
+    image: martinheinz/blog_db:latest
+    build:
+      context: ./postgres
+      dockerfile: ./Dockerfile
+    container_name: blog_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5431:5432
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      DB_NAME: "blog"
+      POSTGRES_DB: postgres
+      PGPORT: 5432
+
+volumes:
+  data: {}
