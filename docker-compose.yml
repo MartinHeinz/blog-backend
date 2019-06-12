@@ -2,9 +2,6 @@ version: '3.7'
 services: 
   backend:
     image: martinheinz/blog_backend:latest
-    build: 
-      context: ./backend
-      dockerfile: ./Dockerfile
     container_name: blog_backend
     healthcheck:
         test: ["CMD", "curl", "-f", "backend"]
