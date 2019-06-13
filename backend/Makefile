@@ -156,6 +156,9 @@ manifest-list: push
 version:
 	@echo $(VERSION)
 
+
+# TODO replace BUILD_IMAGE in case of test build with image that has golint in it, so that I don't have to mount golint exe from host
+# TODO remove line 173
 test: $(BUILD_DIRS)
 	@docker run                                                 \
 	    -i                                                      \
@@ -166,6 +169,8 @@ test: $(BUILD_DIRS)
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin                \
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \
 	    -v $$(pwd)/.go/cache:/.cache                            \
+	    -v $$(pwd)/../reports/golang:/reports/golang            \
+	    -v ~/go/bin:/temp                                       \
 	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
 	    $(BUILD_IMAGE)                                          \

@@ -28,7 +28,18 @@ echo "PASS"
 echo
 
 echo -n "Checking go vet: "
-ERRS=$(go vet ${TARGETS} 2>&1 || true)
+ERRS=$(go vet ${TARGETS} 2>&1 | tee "/reports/golang/vet.out" || true)
+if [ -n "${ERRS}" ]; then
+    echo "FAIL"
+    echo "${ERRS}"
+    echo
+    exit 1
+fi
+echo "PASS"
+echo
+
+echo -n "Checking golint: "
+ERRS=$(/temp/golint ${TARGETS} 2>&1 | tee "/reports/golang/golint.out" || true)
 if [ -n "${ERRS}" ]; then
     echo "FAIL"
     echo "${ERRS}"
