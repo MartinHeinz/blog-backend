@@ -35,12 +35,15 @@ func main() {
 		v1.POST("/", testPostData)
 	}
 
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
+		host, port, user, password, dbname, sslmode)
 	db, err := gorm.Open("postgres", psqlInfo)
 	if err != nil {
 		panic(err)
 	}
+
+	db.AutoMigrate(&Post{}, &Section{})
+
 	defer db.Close()
 
 	fmt.Println("Successfully connected!")

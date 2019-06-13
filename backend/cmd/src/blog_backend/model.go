@@ -1,10 +1,11 @@
-package models
+package main
 
-import "github.com/jinzhu/gorm"
-import "time"
+import (
+	"github.com/jinzhu/gorm"
+	"time"
+)
 
 type Post struct {
-	ID int
 	gorm.Model
 	Title    string
 	Text     string
@@ -13,7 +14,6 @@ type Post struct {
 }
 
 type Section struct {
-	ID     int
 	PostID uint
 	gorm.Model
 	Name string
