@@ -12,6 +12,7 @@ TARGETS=$(for d in "$@"; do echo ./$d/...; done)
 
 echo "Running tests:"
 go test -coverprofile=/reports/golang/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/golang/test-report.out
+cp /reports/golang/coverage.out /coverage/c.out  # TODO add flag and run this line only in CI (no need to copy it on local machine)
 echo
 
 echo -n "Checking gofmt: "
