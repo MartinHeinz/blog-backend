@@ -11,7 +11,7 @@ export GOFLAGS="-mod=vendor"
 TARGETS=$(for d in "$@"; do echo ./$d/...; done)
 
 echo "Running tests:"
-go test -installsuffix "static" ${TARGETS}
+go test -coverprofile=/reports/golang/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/golang/test-report.out
 echo
 
 echo -n "Checking gofmt: "
@@ -29,17 +29,6 @@ echo
 
 echo -n "Checking go vet: "
 ERRS=$(go vet ${TARGETS} 2>&1 | tee "/reports/golang/vet.out" || true)
-if [ -n "${ERRS}" ]; then
-    echo "FAIL"
-    echo "${ERRS}"
-    echo
-    exit 1
-fi
-echo "PASS"
-echo
-
-echo -n "Checking golint: "
-ERRS=$(/temp/golint ${TARGETS} 2>&1 | tee "/reports/golang/golint.out" || true)
 if [ -n "${ERRS}" ]; then
     echo "FAIL"
     echo "${ERRS}"
