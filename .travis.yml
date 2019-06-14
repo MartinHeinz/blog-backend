@@ -6,6 +6,7 @@ matrix:
       - docker
     before_script: cd backend
     script:
+      - export GO111MODULE=on
       - go mod vendor
       - make build
       - test -f bin/linux_amd64/blog_backend
