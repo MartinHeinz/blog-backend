@@ -11,8 +11,8 @@ export GOFLAGS="-mod=vendor"
 TARGETS=$(for d in "$@"; do echo ./$d/...; done)
 
 echo "Running tests:"
-go test -coverprofile=/reports/golang/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/golang/test-report.out
-cp /reports/golang/coverage.out /coverage/c.out  # TODO add flag and run this line only in CI (no need to copy it on local machine)
+go test -coverprofile=/reports/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/test-report.out
+cp /reports/coverage.out /coverage/c.out  # TODO add flag and run this line only in CI (no need to copy it on local machine)
 echo
 
 echo -n "Checking gofmt: "
@@ -29,7 +29,7 @@ echo "PASS"
 echo
 
 echo -n "Checking go vet: "
-ERRS=$(go vet ${TARGETS} 2>&1 | tee "/reports/golang/vet.out" || true)
+ERRS=$(go vet ${TARGETS} 2>&1 | tee "/reports/vet.out" || true)
 if [ -n "${ERRS}" ]; then
     echo "FAIL"
     echo "${ERRS}"

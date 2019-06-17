@@ -6,7 +6,6 @@ matrix:
       - docker
     before_script:
       - ./reports.sh
-      - cd backend
     script:
       - export GO111MODULE=on
       - go mod vendor
@@ -29,11 +28,9 @@ matrix:
           secure: "hbGHoYneczpzXmgBLoSKDNEXH7Gv2FVI7LGyHGXdUq3qdaJfRPzDcnMneBNwOl9/5tYYtbtx5uL9xuMa7VFzvosFhiszb8zEpPEAhUQ7jUYS/6Zchvsb5GgGhb8kk2Zud4UpoRbNr8iaqU6LCbxjMGx/SJkvyqMsMjX5zudMuV3OwRlX7JbsLrENdcb6S0PJAMknNRNEZoVjJ8uuJ0MPFb8fns19CnkiBylY64fUPzdiEh7CRSaxI5CbsNxTRZl4gjEPf3orlnHrMG/HhxOZ2PcCaLpW7+aZjQUd0RTYyOmX4u330tzQyCmTCFlG3Kl/XcDSGGBIGYcTzMAStfZ84NByV3e3jKEXesaXSfsCGZZqFbOtqWAEA60bBRyZFjkNIUUH1+uH3EcKaiQNPdbn46M7gnW4nwHlI7gpkCL2oDMJpHh7DcBDDc0ZtzSrN7lUzYO6M+i+8Xf4O/xnwmNJH0NHXZ9dCnQCfzlLLoFtXkflmMpu7apLiLKD6fdcQbatbu189sAiDJwxx4ehTI+zKCYfyf+exu/T8DaZtzctNh4fZ1NbXkhBFPlVf+++PXXiAWlK7nN6lhe15LAS50ZSmP2rjjScQKoh6F1WrROreguWNZdOlG58FH2Cxno7xb3h0yoGVRfA6hhlw5GQv62Lk3ykzzzfSWywEkHt6nnNPsc="
     before_script:
     - ./reports.sh
-    - cd backend
     - export GO111MODULE=on
     - go mod vendor
     - make test
-    - cd ..
     script:
     - sonar-scanner
 
@@ -45,11 +42,9 @@ matrix:
     - ./cc-test-reporter before-build
 
     script:
-    - cd backend
     - export GO111MODULE=on
     - go mod vendor
     - make test
-    - cd ..
 
     after_script:
     - ./cc-test-reporter after-build -t gocov --exit-code $TRAVIS_TEST_RESULT

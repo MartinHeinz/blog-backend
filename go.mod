@@ -1,4 +1,4 @@
-module backend
+module github.com/MartinHeinz/go-vue-blog
 
 go 1.12
 

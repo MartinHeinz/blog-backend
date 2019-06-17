@@ -156,7 +156,6 @@ manifest-list: push
 version:
 	@echo $(VERSION)
 
-
 test: $(BUILD_DIRS)
 	@docker run                                                 \
 	    -i                                                      \
@@ -167,8 +166,8 @@ test: $(BUILD_DIRS)
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin                \
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \
 	    -v $$(pwd)/.go/cache:/.cache                            \
-	    -v $$(pwd)/../reports/golang:/reports/golang            \
-	    -v $$(pwd)/../:/coverage                                \
+	    -v $$(pwd)/reports:/reports                             \
+	    -v $$(pwd)/:/coverage                                   \
 	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
 	    $(BUILD_IMAGE)                                          \
