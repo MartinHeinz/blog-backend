@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/MartinHeinz/go-vue-blog/cmd/blog_backend/config"
-	"github.com/MartinHeinz/go-vue-blog/cmd/blog_backend/models"
+	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
+	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
