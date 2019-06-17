@@ -2,23 +2,21 @@ package main
 
 import (
 	"fmt"
+	"github.com/MartinHeinz/go-vue-blog/cmd/blog_backend/config"
 	"github.com/MartinHeinz/go-vue-blog/cmd/blog_backend/models"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"net/http"
 )
 
-const (
-	host     = "blog_db"
-	port     = 5432
-	user     = "postgres"
-	password = "postgres"
-	dbname   = "postgres"
-	sslmode  = "disable"
-)
-
 func main() {
+	// load application configurations
+	if err := config.LoadConfig("./config"); err != nil {
+		panic(fmt.Errorf("invalid application configuration: %s", err))
+	}
+
 	// Creates a router without any middleware by default
 	r := gin.New()
 
@@ -36,9 +34,7 @@ func main() {
 		v1.POST("/", testPostData)
 	}
 
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
-		host, port, user, password, dbname, sslmode)
-	db, err := gorm.Open("postgres", psqlInfo)
+	db, err := gorm.Open("postgres", config.Config.DSN)
 	if err != nil {
 		panic(err)
 	}
@@ -49,7 +45,7 @@ func main() {
 
 	fmt.Println("Successfully connected!")
 
-	r.Run(":1234")
+	r.Run(fmt.Sprintf(":%v", config.Config.ServerPort))
 }
 
 func JSON(c *gin.Context, code int, obj interface{}) {
