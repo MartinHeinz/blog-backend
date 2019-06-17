@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/MartinHeinz/go-vue-blog/cmd/blog_backend/models"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -42,7 +43,7 @@ func main() {
 		panic(err)
 	}
 
-	db.AutoMigrate(&Post{}, &Section{})
+	db.AutoMigrate(&models.Post{}, &models.Section{})
 
 	defer db.Close()
 
