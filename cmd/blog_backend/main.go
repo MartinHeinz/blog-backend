@@ -43,7 +43,7 @@ func main() {
 		panic(err)
 	}
 
-	db.AutoMigrate(&models.Post{}, &models.Section{})
+	db.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{})
 
 	defer db.Close()
 
