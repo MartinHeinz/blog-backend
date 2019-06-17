@@ -2,6 +2,7 @@
 
 General Quality and Build:
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/728b4690245b4f768bd73773c06b735e)](https://app.codacy.com/app/MartinHeinz/blog-backend?utm_source=github.com&utm_medium=referral&utm_content=MartinHeinz/blog-backend&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/MartinHeinz/blog-backend.svg?branch=master)](https://travis-ci.com/MartinHeinz/blog-backend)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MartinHeinz_blog-backend&metric=alert_status)](https://sonarcloud.io/dashboard?id=MartinHeinz_blog-backend)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=MartinHeinz_blog-backend&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=MartinHeinz_blog-backend)
