@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
+	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/middleware"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
 
 	"github.com/gin-gonic/gin"
@@ -28,6 +29,8 @@ func main() {
 	// Recovery middleware recovers from any panics and writes a 500 if there was one.
 	r.Use(gin.Recovery())
 
+	r.Use(middleware.CORSMiddleware())
+
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("/", testGetData)
@@ -48,20 +51,14 @@ func main() {
 	r.Run(fmt.Sprintf(":%v", config.Config.ServerPort))
 }
 
-func JSON(c *gin.Context, code int, obj interface{}) {
-	c.Header("Content-Type", "application/json")
-	c.Header("Access-Control-Allow-Origin", "*")
-	c.JSON(code, obj)
-}
-
 func testGetData(c *gin.Context) {
-	JSON(c, http.StatusOK, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"message": "Get Hello",
 	})
 }
 
 func testPostData(c *gin.Context) {
-	JSON(c, http.StatusOK, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"message": "Post Hello",
 	})
 }
