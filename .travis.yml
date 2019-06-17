@@ -15,11 +15,6 @@ matrix:
       - docker images | grep "^martinheinz/blog_backend.*__linux_amd64"
       - make test
 
-  - language: node_js
-    node_js:
-      - "node"
-    script:
-      - docker build -t blog-frontend ./frontend
   - language: go
     addons:
       sonarcloud:
