@@ -1,5 +1,5 @@
 version: '3.7'
-services: 
+services:
   backend:
     image: martinheinz/blog_backend:latest
     container_name: blog_backend
@@ -12,17 +12,6 @@ services:
       - blog_db
     ports:
       - 1234:1234
-
-  frontend:
-    image: martinheinz/blog_frontend:latest
-    build: 
-      context: ./frontend
-      dockerfile: ./Dockerfile
-    container_name: blog_frontend
-    depends_on:
-      - backend
-    ports:
-      - 8080:8080
 
   blog_db:
     image: martinheinz/blog_db:latest
