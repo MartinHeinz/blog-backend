@@ -28,6 +28,7 @@ IMAGE := $(REGISTRY)/$(BIN)
 TAG := $(VERSION)__$(OS)_$(ARCH)
 
 BUILD_IMAGE ?= golang:1.12-alpine
+TEST_IMAGE ?= martinheinz/golang:1.12-alpine-test
 
 # If you want to build all binaries, see the 'all-build' rule.
 # If you want to build all containers, see the 'all-container' rule.
@@ -167,10 +168,12 @@ test: $(BUILD_DIRS)
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \
 	    -v $$(pwd)/.go/cache:/.cache                            \
 	    -v $$(pwd)/reports:/reports                             \
+	    -v $$(pwd)/config:/config                               \
+	    -v $$(pwd)/cmd/blog_backend/test_data:/test_data        \
 	    -v $$(pwd)/:/coverage                                   \
 	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
-	    $(BUILD_IMAGE)                                          \
+	    $(TEST_IMAGE)                                           \
 	    /bin/sh -c "                                            \
 	        ARCH=$(ARCH)                                        \
 	        OS=$(OS)                                            \

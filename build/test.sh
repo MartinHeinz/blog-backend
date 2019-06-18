@@ -4,14 +4,14 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-export CGO_ENABLED=0
+export CGO_ENABLED=1
 export GO111MODULE=on
 export GOFLAGS="-mod=vendor"
 
 TARGETS=$(for d in "$@"; do echo ./$d/...; done)
 
 echo "Running tests:"
-go test -coverprofile=/reports/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/test-report.out
+go test -coverprofile=/reports/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/test-report.out  #  2>&1 | tee "/reports/test-report.out"
 cp /reports/coverage.out /coverage/c.out  # TODO add flag and run this line only in CI (no need to copy it on local machine)
 echo
 

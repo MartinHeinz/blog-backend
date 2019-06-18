@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"github.com/jinzhu/gorm"
 
 	"github.com/spf13/viper"
 )
@@ -9,6 +10,8 @@ import (
 var Config appConfig
 
 type appConfig struct {
+	DB  *gorm.DB
+	Err error
 	// the path to the error message file. Defaults to "config/errors.yaml"
 	ErrorFile string `mapstructure:"error_file"`
 	// the server port. Defaults to 8080

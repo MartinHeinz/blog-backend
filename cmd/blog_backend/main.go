@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/apis"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/middleware"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
@@ -33,18 +34,19 @@ func main() {
 
 	v1 := r.Group("/api/v1")
 	{
+		v1.GET("/posts/:id", apis.GetPost)
 		v1.GET("/", testGetData)
 		v1.POST("/", testPostData)
 	}
 
-	db, err := gorm.Open("postgres", config.Config.DSN)
-	if err != nil {
-		panic(err)
+	config.Config.DB, config.Config.Err = gorm.Open("postgres", config.Config.DSN)
+	if config.Config.Err != nil {
+		panic(config.Config.Err)
 	}
 
-	db.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{})
+	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{})
 
-	defer db.Close()
+	defer config.Config.DB.Close()
 
 	fmt.Println("Successfully connected!")
 
