@@ -10,8 +10,10 @@ import (
 var Config appConfig
 
 type appConfig struct {
-	DB  *gorm.DB
-	Err error
+	// the shared DB ORM object
+	DB *gorm.DB
+	// the error thrown be GORM when using DB ORM object
+	DBErr error
 	// the path to the error message file. Defaults to "config/errors.yaml"
 	ErrorFile string `mapstructure:"error_file"`
 	// the server port. Defaults to 8080

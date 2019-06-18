@@ -16,9 +16,9 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	config.Config.DB, config.Config.Err = gorm.Open("sqlite3", ":memory:")
-	if config.Config.Err != nil {
-		panic(config.Config.Err)
+	config.Config.DB, config.Config.DBErr = gorm.Open("sqlite3", ":memory:")
+	if config.Config.DBErr != nil {
+		panic(config.Config.DBErr)
 	}
 
 	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{})

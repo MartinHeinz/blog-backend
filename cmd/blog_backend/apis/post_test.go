@@ -41,3 +41,18 @@ func TestGetPost(t *testing.T) {
 	assert.Equal(t, body["title"], response["Title"])
 	assert.Equal(t, body["text"], response["Text"])
 }
+
+func TestGetPostNotPresent(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+	router := gin.New()
+
+	path := "/posts/:id"
+	router.GET(path, GetPost)
+
+	w := httptest.NewRecorder()
+	// Post with this ID not present
+	r, _ := http.NewRequest("GET", fmt.Sprintf("/posts/%d", 9999), nil)
+	router.ServeHTTP(w, r)
+
+	assert.Equal(t, http.StatusNotFound, w.Code)
+}

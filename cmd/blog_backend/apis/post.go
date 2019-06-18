@@ -12,7 +12,7 @@ import (
 func GetPost(c *gin.Context) {
 	var post models.Post // TODO move DB query to DAOs or Services
 	if err := config.Config.DB.Where("id = ?", c.Param("id")).First(&post).Error; err != nil {
-		c.AbortWithStatus(404)
+		c.AbortWithStatus(http.StatusNotFound)
 		fmt.Println(err)
 	} else {
 		c.JSON(http.StatusOK, post)

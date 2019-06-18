@@ -39,9 +39,9 @@ func main() {
 		v1.POST("/", testPostData)
 	}
 
-	config.Config.DB, config.Config.Err = gorm.Open("postgres", config.Config.DSN)
-	if config.Config.Err != nil {
-		panic(config.Config.Err)
+	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
+	if config.Config.DBErr != nil {
+		panic(config.Config.DBErr)
 	}
 
 	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{})
