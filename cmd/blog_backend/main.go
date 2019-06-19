@@ -10,7 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"net/http"
 )
 
 func main() {
@@ -35,8 +34,6 @@ func main() {
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("/posts/:id", apis.GetPost)
-		v1.GET("/", testGetData)
-		v1.POST("/", testPostData)
 	}
 
 	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
@@ -51,16 +48,4 @@ func main() {
 	fmt.Println("Successfully connected!")
 
 	r.Run(fmt.Sprintf(":%v", config.Config.ServerPort))
-}
-
-func testGetData(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Get Hello",
-	})
-}
-
-func testPostData(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Post Hello",
-	})
 }
