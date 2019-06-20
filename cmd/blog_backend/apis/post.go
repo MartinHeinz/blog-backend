@@ -10,7 +10,6 @@ import (
 
 // GetPost is function for endpoint /api/v1/posts to get Post by ID
 func GetPost(c *gin.Context) {
-	//var ps := new services.PostService(daos.NewPostDAO())
 	s := services.NewPostService(daos.NewPostDAO())
 	if post, err := s.Get(c.Param("id")); err != nil {
 		c.AbortWithStatus(http.StatusNotFound)

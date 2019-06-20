@@ -10,8 +10,9 @@ export GOFLAGS="-mod=vendor"
 
 TARGETS=$(for d in "$@"; do echo ./$d/...; done)
 
-echo "Running tests:"
-go test -installsuffix "static" ${TARGETS} 2>&1
+echo "Running tests and Generating reports..."
+go test -coverprofile=/reports/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/test-report.out
+cp /reports/coverage.out /coverage/c.out
 echo
 
 echo -n "Checking gofmt: "
@@ -28,7 +29,7 @@ echo "PASS"
 echo
 
 echo -n "Checking go vet: "
-ERRS=$(go vet ${TARGETS} 2>&1 || true)
+ERRS=$(go vet ${TARGETS} 2>&1 | tee "/reports/vet.out" || true)
 if [ -n "${ERRS}" ]; then
     echo "FAIL"
     echo "${ERRS}"

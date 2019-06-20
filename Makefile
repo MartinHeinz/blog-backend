@@ -167,6 +167,28 @@ test: $(BUILD_DIRS)
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin                \
 	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \
 	    -v $$(pwd)/.go/cache:/.cache                            \
+	    -v $$(pwd)/config:/config                               \
+	    -v $$(pwd)/cmd/blog_backend/test_data:/test_data        \
+	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
+	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
+	    $(TEST_IMAGE)                                           \
+	    /bin/sh -c "                                            \
+	        ARCH=$(ARCH)                                        \
+	        OS=$(OS)                                            \
+	        VERSION=$(VERSION)                                  \
+	        ./build/test.sh $(SRC_DIRS)                         \
+	    "
+
+ci: $(BUILD_DIRS)
+	@docker run                                                 \
+	    -i                                                      \
+	    --rm                                                    \
+	    -u $$(id -u):$$(id -g)                                  \
+	    -v $$(pwd):/src                                         \
+	    -w /src                                                 \
+	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin                \
+	    -v $$(pwd)/.go/bin/$(OS)_$(ARCH):/go/bin/$(OS)_$(ARCH)  \
+	    -v $$(pwd)/.go/cache:/.cache                            \
 	    -v $$(pwd)/reports:/reports                             \
 	    -v $$(pwd)/config:/config                               \
 	    -v $$(pwd)/cmd/blog_backend/test_data:/test_data        \
@@ -178,7 +200,7 @@ test: $(BUILD_DIRS)
 	        ARCH=$(ARCH)                                        \
 	        OS=$(OS)                                            \
 	        VERSION=$(VERSION)                                  \
-	        ./build/test.sh $(SRC_DIRS)                         \
+	        ./build/test_ci.sh $(SRC_DIRS)                      \
 	    "
 
 $(BUILD_DIRS):

@@ -4,8 +4,6 @@ matrix:
     sudo: required
     services:
       - docker
-    before_script:
-      - ./reports.sh
     script:
       - export GO111MODULE=on
       - go mod vendor
@@ -25,7 +23,7 @@ matrix:
     - ./reports.sh
     - export GO111MODULE=on
     - go mod vendor
-    - make test
+    - make ci
     script:
     - sonar-scanner
 
@@ -39,7 +37,7 @@ matrix:
     script:
     - export GO111MODULE=on
     - go mod vendor
-    - make test
+    - make ci
 
     after_script:
     - ./cc-test-reporter after-build -t gocov --exit-code $TRAVIS_TEST_RESULT
