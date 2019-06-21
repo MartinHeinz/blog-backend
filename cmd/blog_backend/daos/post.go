@@ -13,7 +13,7 @@ func NewPostDAO() *PostDAO {
 	return &PostDAO{}
 }
 
-func (dao *PostDAO) Get(id string) (*models.Post, error) {
+func (dao *PostDAO) Get(id uint) (*models.Post, error) {
 	var post models.Post
 	err := config.Config.DB.Where("id = ?", id).First(&post).Error
 	return &post, err

@@ -5,7 +5,7 @@ import (
 )
 
 type postDAO interface {
-	Get(id string) (*models.Post, error)
+	Get(id uint) (*models.Post, error)
 }
 
 type PostService struct {
@@ -17,6 +17,6 @@ func NewPostService(dao postDAO) *PostService {
 	return &PostService{dao}
 }
 
-func (s *PostService) Get(id string) (*models.Post, error) {
+func (s *PostService) Get(id uint) (*models.Post, error) {
 	return s.dao.Get(id)
 }
