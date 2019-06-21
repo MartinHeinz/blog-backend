@@ -14,6 +14,17 @@ func TestNewPostService(t *testing.T) {
 	assert.Equal(t, dao, s.dao)
 }
 
+func TestPostService_Get(t *testing.T) {
+	s := NewPostService(newMockPostDAO())
+	post, err := s.Get(1)
+	if assert.Nil(t, err) && assert.NotNil(t, post) {
+		assert.Equal(t, "Test Title", post.Title)
+	}
+
+	post, err = s.Get(100)
+	assert.NotNil(t, err)
+}
+
 func newMockPostDAO() postDAO {
 	return &mockPostDAO{
 		records: []models.Post{
