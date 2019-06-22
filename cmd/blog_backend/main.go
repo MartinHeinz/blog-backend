@@ -6,7 +6,6 @@ import (
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/middleware"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
-
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"

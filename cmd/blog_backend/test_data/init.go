@@ -17,6 +17,7 @@ func init() {
 		panic(err)
 	}
 	config.Config.DB, config.Config.DBErr = gorm.Open("sqlite3", ":memory:")
+	config.Config.DB.Exec("PRAGMA foreign_keys = ON") // SQLite defaults to `foreign_keys = off'`
 	if config.Config.DBErr != nil {
 		panic(config.Config.DBErr)
 	}
