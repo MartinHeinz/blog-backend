@@ -26,6 +26,8 @@ func init() {
 }
 
 func ResetDB() *gorm.DB {
+	config.Config.DB.DropTableIfExists(&models.Post{}, &models.Section{}, &models.Tag{})
+	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{})
 	if err := runSQLFile(config.Config.DB, getSQLFile()); err != nil {
 		panic(fmt.Errorf("error while initializing test database: %s", err))
 	}
@@ -34,6 +36,10 @@ func ResetDB() *gorm.DB {
 
 func getSQLFile() string {
 	return "/test_data/db.sql" // on host use absolute path
+}
+
+func GetTestCaseFolder() string {
+	return "/test_data/test_case_data" // on host use absolute path
 }
 
 func runSQLFile(db *gorm.DB, file string) error {

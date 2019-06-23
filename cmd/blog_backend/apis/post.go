@@ -19,4 +19,5 @@ func GetPost(c *gin.Context) {
 	} else {
 		c.JSON(http.StatusOK, post)
 	}
+
 }

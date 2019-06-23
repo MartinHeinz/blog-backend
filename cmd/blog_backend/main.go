@@ -33,6 +33,7 @@ func main() {
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("/posts/:id", apis.GetPost)
+		v1.GET("/tags/:post_id", apis.GetTags)
 	}
 
 	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)

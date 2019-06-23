@@ -1,0 +1,16 @@
+{
+  "ID": 1,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z",
+  "DeletedAt": null,
+  "Title": "First Blog Post",
+  "Text": "This is blog about something.",
+  "Author": "Martin",
+  "Next": null,
+  "NextPostID": 2,
+  "Previous": null,
+  "PreviousPostID": 0,
+  "PostedOn": "0001-01-01T00:00:00Z",
+  "Section": null,
+  "Tag": null
+}

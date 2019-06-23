@@ -5,7 +5,7 @@ import (
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
 )
 
-// PostDAO persists artist data in database
+// PostDAO persists post data in database
 type PostDAO struct{}
 
 // NewPostDAO creates a new PostDAO

@@ -17,4 +17,5 @@ INSERT INTO sections (name, post_id) VALUES ('First Section', 3);
 INSERT INTO tags (name, post_id) VALUES ('Python', 1);
 INSERT INTO tags (name, post_id) VALUES ('Python', 2);
 INSERT INTO tags (name, post_id) VALUES ('Crypto', 1);
+INSERT INTO tags (name, post_id) VALUES ('Golang', 1);
 INSERT INTO tags (name, post_id) VALUES ('Vue', 3);
