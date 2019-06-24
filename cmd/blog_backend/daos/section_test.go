@@ -7,20 +7,20 @@ import (
 	"testing"
 )
 
-func TestTagDAO_FindAll(t *testing.T) {
+func TestSectionDAO_FindAll(t *testing.T) {
 	config.Config.DB = test_data.ResetDB()
-	dao := NewTagDAO()
+	dao := NewSectionDAO()
 
-	tags := dao.FindAll(1)
+	sections := dao.FindAll(2)
 
-	assert.Equal(t, 3, len(tags))
+	assert.Equal(t, 4, len(sections))
 }
 
-func TestTagDAO_FindEmpty(t *testing.T) {
+func TestSectionDAO_FindEmpty(t *testing.T) {
 	config.Config.DB = test_data.ResetDB()
-	dao := NewTagDAO()
+	dao := NewSectionDAO()
 
-	tags := dao.FindAll(9999)
+	sections := dao.FindAll(9999)
 
-	assert.Empty(t, tags)
+	assert.Empty(t, sections)
 }

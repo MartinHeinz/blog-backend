@@ -1,0 +1,20 @@
+{
+  "sections": [
+    {
+      "PostID": 1,
+      "ID": 1,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z",
+      "DeletedAt": null,
+      "Name": "Title"
+    },
+    {
+      "PostID": 1,
+      "ID": 2,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z",
+      "DeletedAt": null,
+      "Name": "Subsection"
+    }
+  ]
+}

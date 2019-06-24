@@ -34,6 +34,7 @@ func main() {
 	{
 		v1.GET("/posts/:id", apis.GetPost)
 		v1.GET("/tags/:post_id", apis.GetTags)
+		v1.GET("/sections/:post_id", apis.GetSections)
 	}
 
 	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)

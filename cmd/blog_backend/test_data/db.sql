@@ -11,6 +11,7 @@ INSERT INTO sections (name, post_id) VALUES ('Subsection', 1);
 INSERT INTO sections (name, post_id) VALUES ('Intro', 2);
 INSERT INTO sections (name, post_id) VALUES ('Subsection', 2);
 INSERT INTO sections (name, post_id) VALUES ('Subsection 2', 2);
+INSERT INTO sections (name, post_id) VALUES ('Subsection 3', 2);
 INSERT INTO sections (name, post_id) VALUES ('Intro', 3);
 INSERT INTO sections (name, post_id) VALUES ('First Section', 3);
 
