@@ -6,19 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
-	"strconv"
 )
 
-// GetTags is function for endpoint /api/v1/tags to get all tags by post_id
-func GetTags(c *gin.Context) {
-	s := services.NewTagService(daos.NewTagDAO())
-	id, _ := strconv.ParseUint(c.Param("post_id"), 10, 32)
-	if tags, err := s.FindAll(uint(id)); err != nil {
+// GetBooks is function for endpoint /api/v1/books to get all books
+func GetBooks(c *gin.Context) {
+	s := services.NewBookService(daos.NewBookDAO())
+	if books, err := s.FindAll(); err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 		log.Println(err)
 	} else {
 		c.JSON(http.StatusOK, gin.H{
-			"tags": tags,
+			"books": books,
 		})
 	}
 }

@@ -42,7 +42,7 @@ func main() {
 		panic(config.Config.DBErr)
 	}
 
-	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{})
+	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Book{})
 
 	defer config.Config.DB.Close()
 

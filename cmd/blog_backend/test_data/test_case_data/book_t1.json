@@ -1,0 +1,44 @@
+{
+  "books": [
+    {
+      "ID": 1,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z",
+      "DeletedAt": null,
+      "title": "The Go Programming Language",
+      "cover_url": "https://www.gopl.io/cover.png",
+      "url": "https://www.gopl.io/",
+      "alt": "The Go Programming Language"
+    },
+    {
+      "ID": 2,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z",
+      "DeletedAt": null,
+      "title": "Clean Code",
+      "cover_url": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1436202607i/3735293._SX318_.jpg",
+      "url": "https://www.goodreads.com/book/show/3735293-clean-code",
+      "alt": "Clean Code: A Handbook of Agile Software Craftsmanship"
+    },
+    {
+      "ID": 3,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z",
+      "DeletedAt": null,
+      "title": "Software Craftsmanship",
+      "cover_url": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1370897661i/18054154.jpg",
+      "url": "https://www.goodreads.com/book/show/18054154-software-craftsmanship",
+      "alt": "The Software Craftsman: Professionalism, Pragmatism, Pride"
+    },
+    {
+      "ID": 4,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z",
+      "DeletedAt": null,
+      "title": "Extreme Programming Explained",
+      "cover_url": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386925310i/67833.jpg",
+      "url": "https://www.goodreads.com/book/show/67833.Extreme_Programming_Explained",
+      "alt": "Extreme Programming Explained: Embrace Change (The XP Series)"
+    }
+  ]
+}

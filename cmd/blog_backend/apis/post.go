@@ -1,10 +1,10 @@
 package apis
 
 import (
-	"fmt"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/daos"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/services"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -15,7 +15,7 @@ func GetPost(c *gin.Context) {
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
 	if post, err := s.Get(uint(id)); err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
-		fmt.Println(err)
+		log.Println(err)
 	} else {
 		c.JSON(http.StatusOK, post)
 	}

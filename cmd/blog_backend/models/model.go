@@ -33,3 +33,12 @@ type Tag struct {
 	gorm.Model
 	Name string
 }
+
+// Book that I Read
+type Book struct {
+	gorm.Model
+	Title           string `gorm:"column:title" json:"title"`
+	CoverPictureURL string `gorm:"column:cover_url" json:"cover_url"`
+	URL             string `gorm:"column:url" json:"url"`
+	AlternativeText string `gorm:"column:alt" json:"alt"`
+}
