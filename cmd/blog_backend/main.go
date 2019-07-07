@@ -5,7 +5,6 @@ import (
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/apis"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/middleware"
-	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -35,6 +34,7 @@ func main() {
 		v1.GET("/posts/:id", apis.GetPost)
 		v1.GET("/tags/:post_id", apis.GetTags)
 		v1.GET("/sections/:post_id", apis.GetSections)
+		v1.GET("/books/", apis.GetBooks)
 	}
 
 	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
@@ -42,11 +42,11 @@ func main() {
 		panic(config.Config.DBErr)
 	}
 
-	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Book{})
+	// config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Book{}) // This is needed for generation schema for postgres image.
 
 	defer config.Config.DB.Close()
 
-	fmt.Println("Successfully connected!")
+	fmt.Println(fmt.Sprintf("Successfully connected to :%v", config.Config.DSN))
 
 	r.Run(fmt.Sprintf(":%v", config.Config.ServerPort))
 }

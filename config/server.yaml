@@ -1,6 +1,6 @@
 # The Data Source Name for the database
 # Make sure you override this in production with the environment variable: RESTFUL_DSN
-dsn: "postgres://postgres:postgres@db:5432/postgres?sslmode=disable"
+dsn: "postgres://postgres:postgres@db:5432/blog?sslmode=disable"
 
 # These are secret keys used for JWT signing and verification.
 # Make sure you override these keys in production by the following environment variables:
