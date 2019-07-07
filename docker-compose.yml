@@ -36,6 +36,7 @@ services:
       DB_NAME: "blog"
       POSTGRES_DB: postgres
       PGPORT: 5432
+      POPULATE_DB: ${POPULATE_DB}
 
 volumes:
   data: {}
