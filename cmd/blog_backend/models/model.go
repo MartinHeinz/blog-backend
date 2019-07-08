@@ -1,44 +1,51 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
 	"time"
 )
 
+// Model definition same as gorm.Model, but including column and json tags
+type Model struct {
+	ID        uint       `gorm:"primary_key;column:id" json:"id"`
+	CreatedAt time.Time  `gorm:"column:created_at" json:"created_at"`
+	UpdatedAt time.Time  `gorm:"column:updated_at" json:"updated_at"`
+	DeletedAt *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
+}
+
 // Blog Post
 type Post struct {
-	gorm.Model
-	Title          string
-	Text           string
-	Author         string
-	Next           *Post
-	NextPostID     uint `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE"`
-	Previous       *Post
-	PreviousPostID uint `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE"`
-	PostedOn       time.Time
-	Section        []Section
-	Tag            []Tag
+	Model
+	Title          string    `gorm:"column:title" json:"title"`
+	Text           string    `gorm:"column:text" json:"text"`
+	Author         string    `gorm:"column:author" json:"author"`
+	Next           *Post     `gorm:"column:next" json:"next"`
+	NextPostID     uint      `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:next_post_id" json:"next_post_id"`
+	Previous       *Post     `gorm:"column:previous" json:"previous"`
+	PreviousPostID uint      `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:previous_post_id" json:"previous_post_id"`
+	PostedOn       time.Time `gorm:"column:posted_on" json:"posted_on"`
+	Section        []Section `gorm:"column:sections" json:"sections"`
+	Tag            []Tag     `gorm:"column:tags" json:"tags"`
 }
 
 // Section of Blog Post (headings)
 type Section struct {
-	PostID uint `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE"`
-	gorm.Model
-	Name string
+	Model
+	PostID uint   `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:post_id" json:"post_id"`
+	Name   string `gorm:"column:name" json:"name"`
 }
 
 // Tag of Blog Post (hashtag)
 type Tag struct {
-	PostID uint `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE"`
-	gorm.Model
-	Name string
+	Model
+	PostID uint   `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:post_id" json:"post_id"`
+	Name   string `gorm:"column:name" json:"name"`
 }
 
 // Book that I Read
 type Book struct {
-	gorm.Model
+	Model
 	Title           string `gorm:"column:title" json:"title"`
-	CoverPictureURL string `gorm:"column:cover_url" json:"cover_url"`
+	CoverPictureURL string `gorm:"column:cover_url" json:"src"`
 	URL             string `gorm:"column:url" json:"url"`
 	AlternativeText string `gorm:"column:alt" json:"alt"`
 }

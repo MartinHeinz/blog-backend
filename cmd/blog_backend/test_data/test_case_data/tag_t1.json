@@ -1,28 +1,28 @@
 {
   "tags": [
     {
-      "PostID": 1,
-      "ID": 1,
-      "CreatedAt": "0001-01-01T00:00:00Z",
-      "UpdatedAt": "0001-01-01T00:00:00Z",
-      "DeletedAt": null,
-      "Name": "Python"
+      "id": 1,
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z",
+      "deleted_at": null,
+      "post_id": 1,
+      "name": "Python"
     },
     {
-      "PostID": 1,
-      "ID": 3,
-      "CreatedAt": "0001-01-01T00:00:00Z",
-      "UpdatedAt": "0001-01-01T00:00:00Z",
-      "DeletedAt": null,
-      "Name": "Crypto"
+      "id": 3,
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z",
+      "deleted_at": null,
+      "post_id": 1,
+      "name": "Crypto"
     },
     {
-      "PostID": 1,
-      "ID": 4,
-      "CreatedAt": "0001-01-01T00:00:00Z",
-      "UpdatedAt": "0001-01-01T00:00:00Z",
-      "DeletedAt": null,
-      "Name": "Golang"
+      "id": 4,
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z",
+      "deleted_at": null,
+      "post_id": 1,
+      "name": "Golang"
     }
   ]
 }

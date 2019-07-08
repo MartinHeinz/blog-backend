@@ -2,7 +2,6 @@ package services
 
 import (
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
-	"github.com/jinzhu/gorm"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -28,11 +27,11 @@ func TestSectionService_FindAll(t *testing.T) {
 func newMockSectionDAO() sectionDAO {
 	return &mockSectionDAO{
 		records: []models.Section{
-			{Model: gorm.Model{ID: 1}, PostID: 1, Name: "Title"},
-			{Model: gorm.Model{ID: 2}, PostID: 2, Name: "Title"},
-			{Model: gorm.Model{ID: 3}, PostID: 3, Name: "Title"},
-			{Model: gorm.Model{ID: 4}, PostID: 1, Name: "Subsection"},
-			{Model: gorm.Model{ID: 5}, PostID: 1, Name: "Subsection 2"},
+			{Model: models.Model{ID: 1}, PostID: 1, Name: "Title"},
+			{Model: models.Model{ID: 2}, PostID: 2, Name: "Title"},
+			{Model: models.Model{ID: 3}, PostID: 3, Name: "Title"},
+			{Model: models.Model{ID: 4}, PostID: 1, Name: "Subsection"},
+			{Model: models.Model{ID: 5}, PostID: 1, Name: "Subsection 2"},
 		},
 	}
 }

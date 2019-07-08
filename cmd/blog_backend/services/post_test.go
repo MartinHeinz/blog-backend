@@ -3,7 +3,6 @@ package services
 import (
 	"errors"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
-	"github.com/jinzhu/gorm"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -28,8 +27,8 @@ func TestPostService_Get(t *testing.T) {
 func newMockPostDAO() postDAO {
 	return &mockPostDAO{
 		records: []models.Post{
-			{Model: gorm.Model{ID: 1}, Title: "Test Title", Text: "Test Text."},
-			{Model: gorm.Model{ID: 2}, Title: "Test Title 2", Text: "Test Text 2."},
+			{Model: models.Model{ID: 1}, Title: "Test Title", Text: "Test Text."},
+			{Model: models.Model{ID: 2}, Title: "Test Title 2", Text: "Test Text 2."},
 		},
 	}
 }
