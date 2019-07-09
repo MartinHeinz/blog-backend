@@ -24,12 +24,31 @@ func TestPostService_Get(t *testing.T) {
 	assert.NotNil(t, err)
 }
 
+func TestPostService_FindAll(t *testing.T) {
+	s := NewPostService(newMockPostDAO())
+	books, err := s.FindAll()
+	if assert.Nil(t, err) && assert.NotEmpty(t, books) {
+		assert.Equal(t, 2, len(books))
+	}
+
+	s = NewPostService(newMockPostDAOEmpty())
+	books, err = s.FindAll()
+	assert.NotNil(t, err)
+	assert.Empty(t, books)
+}
+
 func newMockPostDAO() postDAO {
 	return &mockPostDAO{
 		records: []models.Post{
 			{Model: models.Model{ID: 1}, Title: "Test Title", Text: "Test Text."},
 			{Model: models.Model{ID: 2}, Title: "Test Title 2", Text: "Test Text 2."},
 		},
+	}
+}
+
+func newMockPostDAOEmpty() postDAO {
+	return &mockPostDAO{
+		records: []models.Post{},
 	}
 }
 
@@ -40,6 +59,11 @@ func (m *mockPostDAO) Get(id uint) (*models.Post, error) {
 		}
 	}
 	return nil, errors.New("not found")
+}
+
+func (m *mockPostDAO) FindAll() []models.Post {
+	posts := m.records
+	return posts
 }
 
 type mockPostDAO struct {

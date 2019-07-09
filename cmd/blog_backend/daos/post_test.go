@@ -30,3 +30,12 @@ func TestPostDAO_GetNotPresent(t *testing.T) {
 	assert.Equal(t, "", post.Title)
 	assert.Equal(t, "", post.Text)
 }
+
+func TestPostDAO_FindAll(t *testing.T) {
+	config.Config.DB = test_data.ResetDB()
+	dao := NewPostDAO()
+
+	posts := dao.FindAll()
+
+	assert.Equal(t, 3, len(posts))
+}

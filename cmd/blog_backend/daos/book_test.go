@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestBookDAO_Get(t *testing.T) {
+func TestBookDAO_FindAll(t *testing.T) {
 	config.Config.DB = test_data.ResetDB()
 	dao := NewBookDAO()
 

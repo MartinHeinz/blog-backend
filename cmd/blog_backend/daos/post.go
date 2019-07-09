@@ -18,3 +18,9 @@ func (dao *PostDAO) Get(id uint) (*models.Post, error) {
 	err := config.Config.DB.Where("id = ?", id).First(&post).Error
 	return &post, err
 }
+
+func (dao *PostDAO) FindAll() []models.Post {
+	var posts []models.Post
+	config.Config.DB.Find(&posts)
+	return posts
+}

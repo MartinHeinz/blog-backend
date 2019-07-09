@@ -20,3 +20,16 @@ func GetPost(c *gin.Context) {
 		c.JSON(http.StatusOK, post)
 	}
 }
+
+// GetPosts is function for endpoint /api/v1/posts to get all posts
+func GetPosts(c *gin.Context) {
+	s := services.NewPostService(daos.NewPostDAO())
+	if posts, err := s.FindAll(); err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		log.Println(err)
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"posts": posts,
+		})
+	}
+}

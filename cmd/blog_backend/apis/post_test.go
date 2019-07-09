@@ -11,5 +11,6 @@ func TestPost(t *testing.T) {
 	runAPITests(t, []apiTestCase{
 		{"t1 - get a Post", "GET", "/posts/:id", "/posts/1", "", GetPost, http.StatusOK, path + "/post_t1.json"},
 		{"t2 - get a Post not Present", "GET", "/posts/:id", "/posts/9999", "", GetPost, http.StatusNotFound, ""},
+		{"t3 - get all posts", "GET", "/posts/", "/posts/", "", GetPosts, http.StatusOK, path + "/post_t3.json"},
 	})
 }
