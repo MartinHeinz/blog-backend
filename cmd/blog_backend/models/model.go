@@ -23,8 +23,8 @@ type Post struct {
 	Previous       *Post     `gorm:"column:previous" json:"previous"`
 	PreviousPostID uint      `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:previous_post_id" json:"previous_post_id"`
 	PostedOn       time.Time `gorm:"column:posted_on" json:"posted_on"`
-	Section        []Section `gorm:"column:sections" json:"sections"`
-	Tag            []Tag     `gorm:"column:tags" json:"tags"`
+	Sections       []Section `gorm:"column:sections" json:"sections"`
+	Tags           []Tag     `gorm:"column:tags" json:"tags"`
 }
 
 // Section of Blog Post (headings)

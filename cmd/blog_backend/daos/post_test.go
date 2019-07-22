@@ -18,6 +18,8 @@ func TestPostDAO_Get(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, expected["Title"], post.Title)
 	assert.Equal(t, expected["Text"], post.Text)
+	assert.Equal(t, 3, len(post.Tags))
+	assert.Equal(t, 2, len(post.Sections))
 }
 
 func TestPostDAO_GetNotPresent(t *testing.T) {

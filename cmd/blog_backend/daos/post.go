@@ -15,7 +15,12 @@ func NewPostDAO() *PostDAO {
 
 func (dao *PostDAO) Get(id uint) (*models.Post, error) {
 	var post models.Post
-	err := config.Config.DB.Where("id = ?", id).First(&post).Error
+	err := config.Config.DB.Where("id = ?", id).
+		Preload("Tags").
+		Preload("Sections").
+		First(&post).
+		Error
+
 	return &post, err
 }
 
