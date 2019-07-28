@@ -9,7 +9,44 @@
       "src": "https://via.placeholder.com/150",
       "url": "https://github.com/MartinHeinz/IoT-Cloud",
       "description": "Cloud framework for IoT (Internet of Things), which focuses on security and privacy of its users, their devices and data",
-      "tags": null
+      "tags": [
+        {
+          "id": 6,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z",
+          "deleted_at": null,
+          "post_id": 0,
+          "project_id": 1,
+          "name": "Python"
+        },
+        {
+          "id": 7,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z",
+          "deleted_at": null,
+          "post_id": 0,
+          "project_id": 1,
+          "name": "Cryptography"
+        },
+        {
+          "id": 8,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z",
+          "deleted_at": null,
+          "post_id": 0,
+          "project_id": 1,
+          "name": "Privacy"
+        },
+        {
+          "id": 9,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z",
+          "deleted_at": null,
+          "post_id": 0,
+          "project_id": 1,
+          "name": "IoT"
+        }
+      ]
     },
     {
       "id": 2,
@@ -20,7 +57,35 @@
       "src": "https://via.placeholder.com/150",
       "url": "https://github.com/MartinHeinz/blog-backend",
       "description": "This website. Goal of this project was to learn Go and Vue.js and as a byproduct I created personal website and blog.",
-      "tags": null
+      "tags": [
+        {
+          "id": 10,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z",
+          "deleted_at": null,
+          "post_id": 0,
+          "project_id": 2,
+          "name": "Vue"
+        },
+        {
+          "id": 11,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z",
+          "deleted_at": null,
+          "post_id": 0,
+          "project_id": 2,
+          "name": "Golang"
+        },
+        {
+          "id": 12,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z",
+          "deleted_at": null,
+          "post_id": 0,
+          "project_id": 2,
+          "name": "Docker"
+        }
+      ]
     }
   ]
 }

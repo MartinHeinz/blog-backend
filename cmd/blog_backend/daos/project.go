@@ -15,6 +15,6 @@ func NewProjectDAO() *ProjectDAO {
 
 func (dao *ProjectDAO) FindAll() []models.Project {
 	var projects []models.Project
-	config.Config.DB.Find(&projects)
+	config.Config.DB.Preload("Tags").Find(&projects)
 	return projects
 }
