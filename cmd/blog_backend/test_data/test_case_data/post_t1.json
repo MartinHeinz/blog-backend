@@ -10,7 +10,7 @@
   "next_post_id": 2,
   "previous": null,
   "previous_post_id": 0,
-  "posted_on": "0001-01-01T00:00:00Z",
+  "posted_on": "2018-08-24T14:00:00Z",
   "sections": [
     {
       "id": 1,
@@ -36,6 +36,7 @@
       "updated_at": "0001-01-01T00:00:00Z",
       "deleted_at": null,
       "post_id": 1,
+      "project_id": 0,
       "name": "Python"
     },
     {
@@ -44,6 +45,7 @@
       "updated_at": "0001-01-01T00:00:00Z",
       "deleted_at": null,
       "post_id": 1,
+      "project_id": 0,
       "name": "Crypto"
     },
     {
@@ -52,6 +54,7 @@
       "updated_at": "0001-01-01T00:00:00Z",
       "deleted_at": null,
       "post_id": 1,
+      "project_id": 0,
       "name": "Golang"
     }
   ]

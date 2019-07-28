@@ -36,6 +36,7 @@ func main() {
 		v1.GET("/tags/:post_id", apis.GetTags)
 		v1.GET("/sections/:post_id", apis.GetSections)
 		v1.GET("/books/", apis.GetBooks)
+		v1.GET("/projects/", apis.GetProjects)
 	}
 
 	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
@@ -43,7 +44,7 @@ func main() {
 		panic(config.Config.DBErr)
 	}
 
-	// config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Book{}) // This is needed for generation schema for postgres image.
+	// config.Config.DB.AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{}) // This is needed for generation of schema for postgres image.
 
 	defer config.Config.DB.Close()
 

@@ -13,7 +13,7 @@ type BookService struct {
 	dao bookDAO
 }
 
-// NewBookService creates a new BookService with the given tag DAO.
+// NewBookService creates a new BookService with the given book DAO.
 func NewBookService(dao bookDAO) *BookService {
 	return &BookService{dao}
 }

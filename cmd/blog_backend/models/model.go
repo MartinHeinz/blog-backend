@@ -34,11 +34,22 @@ type Section struct {
 	Name   string `gorm:"column:name" json:"name"`
 }
 
+// Project that I developed
+type Project struct {
+	Model
+	Name                string `gorm:"column:name" json:"name"`
+	ThumbnailPictureURL string `gorm:"column:thumbnail_url" json:"src"`
+	URL                 string `gorm:"column:url" json:"url"`
+	Description         string `gorm:"column:description" json:"description"`
+	Tags                []Tag  `gorm:"column:tags" json:"tags"`
+}
+
 // Tag of Blog Post (hashtag)
 type Tag struct {
 	Model
-	PostID uint   `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:post_id" json:"post_id"`
-	Name   string `gorm:"column:name" json:"name"`
+	PostID    uint   `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:post_id" json:"post_id"`
+	ProjectID uint   `gorm:"type:int REFERENCES projects(id) ON DELETE CASCADE;column:project_id" json:"project_id"`
+	Name      string `gorm:"column:name" json:"name"`
 }
 
 // Book that I Read

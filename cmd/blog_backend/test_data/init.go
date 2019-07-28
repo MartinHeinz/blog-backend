@@ -22,12 +22,12 @@ func init() {
 		panic(config.Config.DBErr)
 	}
 
-	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Book{})
+	config.Config.DB.AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{})
 }
 
 func ResetDB() *gorm.DB {
-	config.Config.DB.DropTableIfExists(&models.Post{}, &models.Section{}, &models.Tag{})
-	config.Config.DB.AutoMigrate(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Book{})
+	config.Config.DB.DropTableIfExists(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Project{}, &models.Book{}) // Note: Order matters
+	config.Config.DB.AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{})
 	if err := runSQLFile(config.Config.DB, getSQLFile()); err != nil {
 		panic(fmt.Errorf("error while initializing test database: %s", err))
 	}

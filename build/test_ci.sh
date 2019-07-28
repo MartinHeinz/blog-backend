@@ -14,6 +14,9 @@ echo "Running tests and Generating reports..."
 go test -coverprofile=/reports/coverage.out -installsuffix "static" ${TARGETS} -json > /reports/test-report.out
 cp /reports/coverage.out /coverage/c.out
 echo
+echo "Coverage:"
+go tool cover -func=/coverage/c.out
+echo
 
 echo -n "Checking gofmt: "
 ERRS=$(find "$@" -type f -name \*.go | xargs gofmt -l 2>&1 || true)

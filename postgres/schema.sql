@@ -52,11 +52,10 @@ CREATE TABLE public.posts (
                               deleted_at timestamp with time zone,
                               title text,
                               text text,
-                              posted_on timestamp with time zone,
                               author text,
-                              post_id integer,
                               next_post_id integer,
-                              previous_post_id integer
+                              previous_post_id integer,
+                              posted_on timestamp with time zone
 );
 
 
@@ -79,12 +78,43 @@ ALTER SEQUENCE public.posts_id_seq OWNED BY public.posts.id;
 
 
 
-CREATE TABLE public.sections (
-                                 post_id integer,
+CREATE TABLE public.projects (
                                  id integer NOT NULL,
                                  created_at timestamp with time zone,
                                  updated_at timestamp with time zone,
                                  deleted_at timestamp with time zone,
+                                 name text,
+                                 thumbnail_url text,
+                                 url text,
+                                 description text
+);
+
+
+ALTER TABLE public.projects OWNER TO postgres;
+
+
+CREATE SEQUENCE public.projects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.projects_id_seq OWNER TO postgres;
+
+
+ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
+
+
+
+CREATE TABLE public.sections (
+                                 id integer NOT NULL,
+                                 created_at timestamp with time zone,
+                                 updated_at timestamp with time zone,
+                                 deleted_at timestamp with time zone,
+                                 post_id integer,
                                  name text
 );
 
@@ -109,11 +139,12 @@ ALTER SEQUENCE public.sections_id_seq OWNED BY public.sections.id;
 
 
 CREATE TABLE public.tags (
-                             post_id integer,
                              id integer NOT NULL,
                              created_at timestamp with time zone,
                              updated_at timestamp with time zone,
                              deleted_at timestamp with time zone,
+                             post_id integer,
+                             project_id integer,
                              name text
 );
 
@@ -145,6 +176,10 @@ ALTER TABLE ONLY public.posts ALTER COLUMN id SET DEFAULT nextval('public.posts_
 
 
 
+ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
+
+
+
 ALTER TABLE ONLY public.sections ALTER COLUMN id SET DEFAULT nextval('public.sections_id_seq'::regclass);
 
 
@@ -163,6 +198,11 @@ ALTER TABLE ONLY public.posts
 
 
 
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+
 ALTER TABLE ONLY public.sections
     ADD CONSTRAINT sections_pkey PRIMARY KEY (id);
 
@@ -173,39 +213,28 @@ ALTER TABLE ONLY public.tags
 
 
 
-CREATE INDEX idx_books_deleted_at ON public.books USING btree (deleted_at);
-
-
-
-CREATE INDEX idx_posts_deleted_at ON public.posts USING btree (deleted_at);
-
-
-
-CREATE INDEX idx_sections_deleted_at ON public.sections USING btree (deleted_at);
-
-
-
-CREATE INDEX idx_tags_deleted_at ON public.tags USING btree (deleted_at);
+ALTER TABLE ONLY public.posts
+    ADD CONSTRAINT posts_next_post_id_fkey FOREIGN KEY (next_post_id) REFERENCES public.posts(id) ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY public.posts
-    ADD CONSTRAINT posts_next_post_id_posts_id_foreign FOREIGN KEY (next_post_id) REFERENCES public.posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
-
-ALTER TABLE ONLY public.posts
-    ADD CONSTRAINT posts_previous_post_id_posts_id_foreign FOREIGN KEY (previous_post_id) REFERENCES public.posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT posts_previous_post_id_fkey FOREIGN KEY (previous_post_id) REFERENCES public.posts(id) ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY public.sections
-    ADD CONSTRAINT sections_post_id_posts_id_foreign FOREIGN KEY (post_id) REFERENCES public.posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT sections_post_id_fkey FOREIGN KEY (post_id) REFERENCES public.posts(id) ON DELETE CASCADE;
 
 
 
 ALTER TABLE ONLY public.tags
-    ADD CONSTRAINT tags_post_id_posts_id_foreign FOREIGN KEY (post_id) REFERENCES public.posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT tags_post_id_fkey FOREIGN KEY (post_id) REFERENCES public.posts(id) ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY public.tags
+    ADD CONSTRAINT tags_project_id_fkey FOREIGN KEY (project_id) REFERENCES public.projects(id) ON DELETE CASCADE;
 
 -- Retrieval steps:
 --
