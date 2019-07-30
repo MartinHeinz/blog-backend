@@ -26,6 +26,10 @@ type appConfig struct {
 	JWTSigningKey string `mapstructure:"jwt_signing_key"`
 	// JWT verification key. required.
 	JWTVerificationKey string `mapstructure:"jwt_verification_key"`
+	// Certificate file for HTTPS
+	CertFile string `mapstructure:"cert_file"`
+	// Private key file for HTTPS
+	KeyFile  string `mapstructure:"key_file"`
 }
 
 func LoadConfig(configPaths ...string) error {
@@ -34,9 +38,11 @@ func LoadConfig(configPaths ...string) error {
 	v.SetConfigType("yaml")
 	v.SetEnvPrefix("backend")
 	v.AutomaticEnv()
-	v.SetDefault("error_file", "errors.yaml")
+	v.SetDefault("error_file", "/config/errors.yaml")
 	v.SetDefault("server_port", 1234)
 	v.SetDefault("jwt_signing_method", "HS256")
+	v.SetDefault("cert_file", "/config/fullchain.pem")
+	v.SetDefault("key_file", "/config/privkey.pem")
 	for _, path := range configPaths {
 		v.AddConfigPath(path)
 	}

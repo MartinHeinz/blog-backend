@@ -50,5 +50,5 @@ func main() {
 
 	fmt.Println(fmt.Sprintf("Successfully connected to :%v", config.Config.DSN))
 
-	r.Run(fmt.Sprintf(":%v", config.Config.ServerPort))
+	r.RunTLS(fmt.Sprintf(":%v", config.Config.ServerPort), config.Config.CertFile, config.Config.KeyFile)
 }
