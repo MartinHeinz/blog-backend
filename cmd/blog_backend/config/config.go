@@ -41,8 +41,8 @@ func LoadConfig(configPaths ...string) error {
 	v.SetDefault("error_file", "/config/errors.yaml")
 	v.SetDefault("server_port", 1234)
 	v.SetDefault("jwt_signing_method", "HS256")
-	v.SetDefault("cert_file", "/config/fullchain.pem")
-	v.SetDefault("key_file", "/config/privkey.pem")
+	v.SetDefault("cert_file", "/etc/certs/fullchain.pem")
+	v.SetDefault("key_file", "/etc/certs/privkey.pem")
 	for _, path := range configPaths {
 		v.AddConfigPath(path)
 	}
