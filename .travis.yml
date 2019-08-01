@@ -42,5 +42,16 @@ matrix:
     after_script:
     - ./cc-test-reporter after-build -t gocov --exit-code $TRAVIS_TEST_RESULT
 
+  - language: go
+    services:
+      - docker
+    if: branch = master
+    script:
+      - export GO111MODULE=on
+      - go mod vendor
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - make container
+      - make push
+
 notifications:
   email: false

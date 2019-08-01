@@ -136,13 +136,16 @@ container: .container-$(DOTFILE_IMAGE) say_container_name
 
 say_container_name:
 	@echo "container: $(IMAGE):$(TAG)"
+	@echo "container: $(IMAGE):latest"
 
 push: .push-$(DOTFILE_IMAGE) say_push_name
 .push-$(DOTFILE_IMAGE): .container-$(DOTFILE_IMAGE)
 	@docker push $(IMAGE):$(TAG)
+	@docker push $(IMAGE):latest
 
 say_push_name:
 	@echo "pushed: $(IMAGE):$(TAG)"
+	@echo "pushed: $(IMAGE):latest"
 
 manifest-list: push
 	platforms=$$(echo $(ALL_PLATFORMS) | sed 's/ /,/g');  \
