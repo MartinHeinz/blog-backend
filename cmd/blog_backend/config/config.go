@@ -29,7 +29,7 @@ type appConfig struct {
 	// Certificate file for HTTPS
 	CertFile string `mapstructure:"cert_file"`
 	// Private key file for HTTPS
-	KeyFile  string `mapstructure:"key_file"`
+	KeyFile string `mapstructure:"key_file"`
 }
 
 func LoadConfig(configPaths ...string) error {
