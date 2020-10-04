@@ -5,6 +5,7 @@ import (
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/test_data"
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 func TestPostDAO_Get(t *testing.T) {
@@ -40,4 +41,19 @@ func TestPostDAO_FindAll(t *testing.T) {
 	posts := dao.FindAll()
 
 	assert.Equal(t, 3, len(posts))
+}
+
+func TestPostDAO_FindAllOrdered(t *testing.T) {
+	timeFormat := "2006-01-02 15:04:05"
+	config.Config.DB = test_data.ResetDB()
+	dao := NewPostDAO()
+
+	posts := dao.FindAll()
+
+	firstPostDate, _ := time.Parse(timeFormat, "2019-05-30 19:00:00")
+	assert.Equal(t, firstPostDate, posts[0].PostedOn)
+	secondPostDate, _ := time.Parse(timeFormat, "2019-02-24 13:00:00")
+	assert.Equal(t, secondPostDate, posts[1].PostedOn)
+	thirdPostDate, _ := time.Parse(timeFormat, "2018-08-24 14:00:00")
+	assert.Equal(t, thirdPostDate, posts[2].PostedOn)
 }
