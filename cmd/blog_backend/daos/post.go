@@ -26,6 +26,7 @@ func (dao *PostDAO) Get(id uint) (*models.Post, error) {
 
 func (dao *PostDAO) FindAll() []models.Post {
 	var posts []models.Post
-	config.Config.DB.Find(&posts)
+	config.Config.DB.Order("posted_on DESC").
+		Find(&posts)
 	return posts
 }
