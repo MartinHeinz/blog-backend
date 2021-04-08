@@ -39,7 +39,7 @@ func LoadConfig(configPaths ...string) error {
 	v.SetEnvPrefix("backend")
 	v.AutomaticEnv()
 	v.SetDefault("error_file", "/config/errors.yaml")
-	v.SetDefault("server_port", 1234)
+	v.SetDefault("server_port", 8080)
 	v.SetDefault("jwt_signing_method", "HS256")
 	v.SetDefault("cert_file", "/etc/certs/fullchain.pem")
 	v.SetDefault("key_file", "/etc/certs/privkey.pem")

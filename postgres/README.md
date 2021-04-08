@@ -25,5 +25,5 @@ docker-compose up blog_db  # Start only blog_db to create schema and optionally 
 _Stop docker-compose (CTRL-C)_
 ```
 docker-compose up  # Start all services this time
-curl https://localhost:1234/api/v1/<endpoint>/ | jq  # Check presence of populated data...
+curl https://localhost:8080/api/v1/<endpoint>/ | jq  # Check presence of populated data...
 ```
