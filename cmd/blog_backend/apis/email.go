@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-// Add subscriber to mailing list at /api/v1/mail/subscribe
+// Add subscriber to mailing list at /api/v1/newsletter/subscribe/
 func AddSubscriber(c *gin.Context) {
 	url := "https://api.mailerlite.com/api/v2/groups/106705303/subscribers"
 
