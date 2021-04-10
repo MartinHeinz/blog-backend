@@ -37,6 +37,7 @@ func main() {
 		v1.GET("/sections/:post_id", apis.GetSections)
 		v1.GET("/books/", apis.GetBooks)
 		v1.GET("/projects/", apis.GetProjects)
+		v1.POST("/mail/", apis.AddSubscriber)
 	}
 
 	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)

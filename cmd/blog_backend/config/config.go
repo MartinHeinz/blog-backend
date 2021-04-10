@@ -30,6 +30,8 @@ type appConfig struct {
 	CertFile string `mapstructure:"cert_file"`
 	// Private key file for HTTPS
 	KeyFile string `mapstructure:"key_file"`
+	// MailerLite API Key
+	APIKey string `mapstructure:"api_key"`
 }
 
 func LoadConfig(configPaths ...string) error {
