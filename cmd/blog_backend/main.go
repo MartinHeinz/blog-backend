@@ -5,6 +5,7 @@ import (
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/apis"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/middleware"
+	brotli "github.com/anargu/gin-brotli"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -28,6 +29,7 @@ func main() {
 	r.Use(gin.Recovery())
 
 	r.Use(middleware.CORSMiddleware())
+	r.Use(brotli.Brotli(brotli.DefaultCompression))
 
 	v1 := r.Group("/api/v1")
 	{
