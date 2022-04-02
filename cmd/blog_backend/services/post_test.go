@@ -26,22 +26,45 @@ func TestPostService_Get(t *testing.T) {
 
 func TestPostService_FindAll(t *testing.T) {
 	s := NewPostService(newMockPostDAO())
-	books, err := s.FindAll()
-	if assert.Nil(t, err) && assert.NotEmpty(t, books) {
-		assert.Equal(t, 2, len(books))
+	posts, err := s.FindAll()
+	if assert.Nil(t, err) && assert.NotEmpty(t, posts) {
+		assert.Equal(t, 2, len(posts))
 	}
 
 	s = NewPostService(newMockPostDAOEmpty())
-	books, err = s.FindAll()
+	posts, err = s.FindAll()
 	assert.NotNil(t, err)
-	assert.Empty(t, books)
+	assert.Empty(t, posts)
+}
+
+func TestPostService_FindAllByTag(t *testing.T) {
+	s := NewPostService(newMockPostDAO())
+	posts, err := s.FindAllByTag("python")
+	if assert.Nil(t, err) && assert.NotEmpty(t, posts) {
+		assert.Equal(t, 2, len(posts))
+	}
+
+	s = NewPostService(newMockPostDAOEmpty())
+	posts, err = s.FindAllByTag("whatever")
+	assert.NotNil(t, err)
+	assert.Empty(t, posts)
 }
 
 func newMockPostDAO() postDAO {
 	return &mockPostDAO{
 		records: []models.Post{
-			{Model: models.Model{ID: 1}, Title: "Test Title", Text: "Test Text."},
-			{Model: models.Model{ID: 2}, Title: "Test Title 2", Text: "Test Text 2."},
+			{
+				Model: models.Model{ID: 1},
+				Title: "Test Title",
+				Text:  "Test Text.",
+				Tags:  []models.Tag{{Name: "python"}},
+			},
+			{
+				Model: models.Model{ID: 2},
+				Title: "Test Title 2",
+				Text:  "Test Text 2.",
+				Tags:  []models.Tag{{Name: "Python"}},
+			},
 		},
 	}
 }
@@ -62,6 +85,11 @@ func (m *mockPostDAO) Get(id uint) (*models.Post, error) {
 }
 
 func (m *mockPostDAO) FindAll() []models.Post {
+	posts := m.records
+	return posts
+}
+
+func (m *mockPostDAO) FindAllByTag(tagName string) []models.Post {
 	posts := m.records
 	return posts
 }

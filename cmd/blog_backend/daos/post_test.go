@@ -57,3 +57,19 @@ func TestPostDAO_FindAllOrdered(t *testing.T) {
 	thirdPostDate, _ := time.Parse(timeFormat, "2018-08-24 14:00:00")
 	assert.Equal(t, thirdPostDate, posts[2].PostedOn)
 }
+
+func TestPostDAO_FindAllByTag(t *testing.T) {
+	config.Config.DB = test_data.ResetDB()
+	dao := NewPostDAO()
+
+	posts := dao.FindAllByTag("python")
+
+	assert.Equal(t, 2, len(posts))
+
+	expected := map[string]string{"Title": "3rd Blog Post", "Text": "Another dummy content"}
+	post := dao.FindAllByTag("vue")
+
+	assert.Equal(t, 1, len(post))
+	assert.Equal(t, expected["Title"], post[0].Title)
+	assert.Equal(t, expected["Text"], post[0].Text)
+}

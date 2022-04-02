@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-// GetPost is function for endpoint /api/v1/posts to get Post by ID
+// GetPost is function for endpoint /api/v1/posts/by-id/:id to get Post by ID
 func GetPost(c *gin.Context) {
 	s := services.NewPostService(daos.NewPostDAO())
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
@@ -25,6 +25,20 @@ func GetPost(c *gin.Context) {
 func GetPosts(c *gin.Context) {
 	s := services.NewPostService(daos.NewPostDAO())
 	if posts, err := s.FindAll(); err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		log.Println(err)
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"posts": posts,
+		})
+	}
+}
+
+// GetPostsByTag is function for endpoint /posts/by-tag/:tag_name to get all posts with specified tag
+func GetPostsByTag(c *gin.Context) {
+	s := services.NewPostService(daos.NewPostDAO())
+	tag := c.Param("tag_name")
+	if posts, err := s.FindAllByTag(tag); err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 		log.Println(err)
 	} else {

@@ -33,7 +33,8 @@ func main() {
 
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/posts/:id", apis.GetPost)
+		v1.GET("/posts/by-id/:id", apis.GetPost)
+		v1.GET("/posts/by-tag/:tag_name", apis.GetPostsByTag)
 		v1.GET("/posts/", apis.GetPosts)
 		v1.GET("/tags/:post_id", apis.GetTags)
 		v1.GET("/sections/:post_id", apis.GetSections)

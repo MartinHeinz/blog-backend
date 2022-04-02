@@ -30,3 +30,14 @@ func (dao *PostDAO) FindAll() []models.Post {
 		Find(&posts)
 	return posts
 }
+
+func (dao *PostDAO) FindAllByTag(tagName string) []models.Post {
+	var posts []models.Post
+	config.Config.DB.
+		Joins("JOIN tags ON tags.post_id = posts.id").
+		Where("lower(name) = lower(?) and post_id is not null", tagName).
+		Order("posted_on DESC").
+		Find(&posts)
+
+	return posts
+}

@@ -27,8 +27,8 @@ BASEIMAGE ?= gcr.io/distroless/static
 IMAGE := $(REGISTRY)/$(BIN)
 TAG := $(VERSION)__$(OS)_$(ARCH)
 
-BUILD_IMAGE ?= golang:1.12-alpine
-TEST_IMAGE ?= martinheinz/golang:1.12-alpine-test
+BUILD_IMAGE ?= golang:1.17-alpine
+TEST_IMAGE ?= martinheinz/golang:1.17-alpine-test
 
 # If you want to build all binaries, see the 'all-build' rule.
 # If you want to build all containers, see the 'all-container' rule.
