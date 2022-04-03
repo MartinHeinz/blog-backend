@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   backend:
-    image: martinheinz/blog_backend:latest
+    image: ghcr.io/martinheinz/blog_backend
     container_name: blog_backend
     healthcheck:
         test: ["CMD", "curl", "-f", "backend"]

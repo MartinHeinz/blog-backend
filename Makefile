@@ -2,7 +2,7 @@
 BIN := blog_backend
 
 # Where to push the docker image.
-REGISTRY ?= martinheinz
+REGISTRY ?= ghcr.io/martinheinz
 
 # This version-strategy uses git tags to set the version string
 VERSION := $(shell git describe --tags --always --dirty)

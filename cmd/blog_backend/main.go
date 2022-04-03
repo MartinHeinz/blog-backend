@@ -9,7 +9,23 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
+
+func prometheusHandler() gin.HandlerFunc {
+	h := promhttp.HandlerFor(
+		prometheus.DefaultGatherer,
+		promhttp.HandlerOpts{
+			// Opt into OpenMetrics to support exemplars.
+			EnableOpenMetrics: true,
+		},
+	)
+
+	return func(c *gin.Context) {
+		h.ServeHTTP(c.Writer, c.Request)
+	}
+}
 
 func main() {
 	// load application configurations
@@ -42,6 +58,8 @@ func main() {
 		v1.GET("/projects/", apis.GetProjects)
 		v1.POST("/newsletter/subscribe/", apis.AddSubscriber)
 	}
+
+	r.GET("/metrics/", prometheusHandler())
 
 	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
 	if config.Config.DBErr != nil {
