@@ -11,6 +11,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	dbprom "gorm.io/plugin/prometheus"
 	"log"
 )
 
@@ -66,6 +67,15 @@ func main() {
 	if config.Config.DBErr != nil {
 		panic(config.Config.DBErr)
 	}
+
+	config.Config.DB.Use(dbprom.New(dbprom.Config{
+		DBName:          "blog",
+		RefreshInterval: 15,
+		StartServer:     false,
+		MetricsCollector: []dbprom.MetricsCollector{
+			&dbprom.Postgres{},
+		},
+	}))
 
 	// config.Config.DB.Migrator().AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{}) // This is needed for generation of schema for postgres image.
 

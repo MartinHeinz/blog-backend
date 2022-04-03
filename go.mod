@@ -11,6 +11,7 @@ require (
 	gorm.io/driver/postgres v1.3.3
 	gorm.io/driver/sqlite v1.3.1
 	gorm.io/gorm v1.23.4
+	gorm.io/plugin/prometheus v0.0.0-20220223061010-d8bdd50fdfc7
 )
 
 require (
