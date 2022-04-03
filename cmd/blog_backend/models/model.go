@@ -18,10 +18,10 @@ type Post struct {
 	Title          string    `gorm:"column:title" json:"title"`
 	Text           string    `gorm:"column:text" json:"text"`
 	Author         string    `gorm:"column:author" json:"author"`
-	Next           *Post     `gorm:"column:next" json:"next"`
-	NextPostID     uint      `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:next_post_id" json:"next_post_id"`
-	Previous       *Post     `gorm:"column:previous" json:"previous"`
-	PreviousPostID uint      `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:previous_post_id" json:"previous_post_id"`
+	Next           *Post     `gorm:"foreignKey:NextPostID;references:id" json:"next"`
+	NextPostID     uint      `json:"next_post_id"`
+	Previous       *Post     `gorm:"foreignKey:PreviousPostID;references:id" json:"previous"`
+	PreviousPostID uint      `json:"previous_post_id"`
 	PostedOn       time.Time `gorm:"column:posted_on" json:"posted_on"`
 	Sections       []Section `gorm:"column:sections" json:"sections"`
 	Tags           []Tag     `gorm:"column:tags" json:"tags"`
@@ -30,7 +30,7 @@ type Post struct {
 // Section of Blog Post (headings)
 type Section struct {
 	Model
-	PostID uint   `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:post_id" json:"post_id"`
+	PostID uint   `gorm:"type:int" json:"post_id"`
 	Name   string `gorm:"column:name" json:"name"`
 }
 
@@ -47,8 +47,8 @@ type Project struct {
 // Tag of Blog Post (hashtag)
 type Tag struct {
 	Model
-	PostID    uint   `gorm:"type:int REFERENCES posts(id) ON DELETE CASCADE;column:post_id" json:"post_id"`
-	ProjectID uint   `gorm:"type:int REFERENCES projects(id) ON DELETE CASCADE;column:project_id" json:"project_id"`
+	PostID    uint   `gorm:"type:int" json:"post_id"`
+	ProjectID uint   `gorm:"type:int" json:"project_id"`
 	Name      string `gorm:"column:name" json:"name"`
 }
 

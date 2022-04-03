@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 	"io/ioutil"
 	"strings"
 )
@@ -16,18 +16,18 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	config.Config.DB, config.Config.DBErr = gorm.Open("sqlite3", ":memory:")
+	config.Config.DB, config.Config.DBErr = gorm.Open(sqlite.Open(":memory:"))
 	config.Config.DB.Exec("PRAGMA foreign_keys = ON") // SQLite defaults to `foreign_keys = off'`
 	if config.Config.DBErr != nil {
 		panic(config.Config.DBErr)
 	}
 
-	config.Config.DB.AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{})
+	config.Config.DB.Migrator().AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{})
 }
 
 func ResetDB() *gorm.DB {
-	config.Config.DB.DropTableIfExists(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Project{}, &models.Book{}) // Note: Order matters
-	config.Config.DB.AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{})
+	config.Config.DB.Migrator().DropTable(&models.Post{}, &models.Section{}, &models.Tag{}, &models.Project{}, &models.Book{}) // Note: Order matters
+	config.Config.DB.Migrator().AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{})
 	if err := runSQLFile(config.Config.DB, getSQLFile()); err != nil {
 		panic(fmt.Errorf("error while initializing test database: %s", err))
 	}

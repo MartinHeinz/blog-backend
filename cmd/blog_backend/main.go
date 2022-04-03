@@ -7,10 +7,11 @@ import (
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/middleware"
 	brotli "github.com/anargu/gin-brotli"
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"log"
 )
 
 func prometheusHandler() gin.HandlerFunc {
@@ -61,14 +62,18 @@ func main() {
 
 	r.GET("/metrics/", prometheusHandler())
 
-	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
+	config.Config.DB, config.Config.DBErr = gorm.Open(postgres.Open(config.Config.DSN))
 	if config.Config.DBErr != nil {
 		panic(config.Config.DBErr)
 	}
 
-	// config.Config.DB.AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{}) // This is needed for generation of schema for postgres image.
+	// config.Config.DB.Migrator().AutoMigrate(&models.Post{}, &models.Project{}, &models.Section{}, &models.Tag{}, &models.Book{}) // This is needed for generation of schema for postgres image.
 
-	defer config.Config.DB.Close()
+	sqlDB, err := config.Config.DB.DB()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer sqlDB.Close()
 
 	fmt.Println(fmt.Sprintf("Successfully connected to :%v", config.Config.DSN))
 
