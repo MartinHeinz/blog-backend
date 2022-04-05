@@ -12,6 +12,7 @@ services:
       - blog_db
     ports:
       - 8080:8080
+      - 9080:9080
     volumes:
       - ./data/certbot/conf/live/${HOST}:/etc/certs
 

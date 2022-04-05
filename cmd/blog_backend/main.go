@@ -37,6 +37,7 @@ func main() {
 
 	// Creates a router without any middleware by default
 	r := gin.New()
+	http := gin.Default()
 
 	// Global middleware
 	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
@@ -61,7 +62,7 @@ func main() {
 		v1.POST("/newsletter/subscribe/", apis.AddSubscriber)
 	}
 
-	r.GET("/metrics/", prometheusHandler())
+	http.GET("/metrics/", prometheusHandler())
 
 	config.Config.DB, config.Config.DBErr = gorm.Open(postgres.Open(config.Config.DSN))
 	if config.Config.DBErr != nil {
@@ -87,5 +88,6 @@ func main() {
 
 	fmt.Println(fmt.Sprintf("Successfully connected to :%v", config.Config.DSN))
 
-	r.RunTLS(fmt.Sprintf(":%v", config.Config.ServerPort), config.Config.CertFile, config.Config.KeyFile)
+	go r.RunTLS(fmt.Sprintf(":%v", config.Config.ServerPort), config.Config.CertFile, config.Config.KeyFile)
+	http.Run(":9080")
 }
