@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
+	"go.opentelemetry.io/otel"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"io/ioutil"
@@ -11,6 +12,7 @@ import (
 )
 
 func init() {
+	config.Config.Tracer = otel.Tracer("backend")
 	// the test may be started from the home directory or a subdirectory
 	err := config.LoadConfig("/config") // on host use absolute path
 	if err != nil {

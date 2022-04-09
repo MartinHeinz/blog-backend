@@ -2,6 +2,7 @@ package apis
 
 import (
 	"fmt"
+	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/daos"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/services"
 	"github.com/gin-gonic/gin"
@@ -11,6 +12,8 @@ import (
 
 // GetSections is function for endpoint /api/v1/tags to get all sections by post_id
 func GetSections(c *gin.Context) {
+	_, span := config.Config.Tracer.Start(c.Request.Context(), "GetSections")
+	defer span.End()
 	s := services.NewSectionService(daos.NewSectionDAO())
 	id, _ := strconv.ParseUint(c.Param("post_id"), 10, 32)
 	if sections, err := s.FindAll(uint(id)); err != nil {

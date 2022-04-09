@@ -1,6 +1,7 @@
 package daos
 
 import (
+	"context"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/test_data"
 	"github.com/stretchr/testify/assert"
@@ -12,7 +13,7 @@ func TestPostDAO_Get(t *testing.T) {
 	config.Config.DB = test_data.ResetDB()
 	dao := NewPostDAO()
 
-	post, err := dao.Get(1)
+	post, err := dao.Get(context.Background(), 1)
 
 	expected := map[string]string{"Title": "First Blog Post", "Text": "This is blog about something."}
 
@@ -27,7 +28,7 @@ func TestPostDAO_GetNotPresent(t *testing.T) {
 	config.Config.DB = test_data.ResetDB()
 	dao := NewPostDAO()
 
-	post, err := dao.Get(9999)
+	post, err := dao.Get(context.Background(), 9999)
 
 	assert.NotNil(t, err)
 	assert.Equal(t, "", post.Title)

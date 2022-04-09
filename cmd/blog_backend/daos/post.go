@@ -1,6 +1,7 @@
 package daos
 
 import (
+	"context"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
 )
@@ -13,7 +14,9 @@ func NewPostDAO() *PostDAO {
 	return &PostDAO{}
 }
 
-func (dao *PostDAO) Get(id uint) (*models.Post, error) {
+func (dao *PostDAO) Get(ctx context.Context, id uint) (*models.Post, error) {
+	ctx, span := config.Config.Tracer.Start(ctx, "PostDAOGet")
+	defer span.End()
 	var post models.Post
 	err := config.Config.DB.Where("id = ?", id).
 		Preload("Tags").

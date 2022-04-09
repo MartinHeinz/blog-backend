@@ -11,6 +11,8 @@ import (
 
 // Add subscriber to mailing list at /api/v1/newsletter/subscribe/
 func AddSubscriber(c *gin.Context) {
+	_, span := config.Config.Tracer.Start(c.Request.Context(), "AddSubscriber")
+	defer span.End()
 	url := "https://api.mailerlite.com/api/v2/groups/106705303/subscribers"
 
 	req, err := http.NewRequest("POST", url, c.Request.Body)

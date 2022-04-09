@@ -1,6 +1,7 @@
 package services
 
 import (
+	"context"
 	"errors"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
 	"github.com/stretchr/testify/assert"
@@ -15,12 +16,12 @@ func TestNewPostService(t *testing.T) {
 
 func TestPostService_Get(t *testing.T) {
 	s := NewPostService(newMockPostDAO())
-	post, err := s.Get(1)
+	post, err := s.Get(context.Background(), 1)
 	if assert.Nil(t, err) && assert.NotNil(t, post) {
 		assert.Equal(t, "Test Title", post.Title)
 	}
 
-	post, err = s.Get(100)
+	post, err = s.Get(context.Background(), 100)
 	assert.NotNil(t, err)
 }
 
@@ -75,7 +76,7 @@ func newMockPostDAOEmpty() postDAO {
 	}
 }
 
-func (m *mockPostDAO) Get(id uint) (*models.Post, error) {
+func (m *mockPostDAO) Get(ctx context.Context, id uint) (*models.Post, error) {
 	for _, record := range m.records {
 		if record.ID == id {
 			return &record, nil

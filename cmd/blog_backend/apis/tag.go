@@ -1,6 +1,7 @@
 package apis
 
 import (
+	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/config"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/daos"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/services"
 	"github.com/gin-gonic/gin"
@@ -11,6 +12,8 @@ import (
 
 // GetTags is function for endpoint /api/v1/tags to get all tags by post_id
 func GetTags(c *gin.Context) {
+	_, span := config.Config.Tracer.Start(c.Request.Context(), "GetTags")
+	defer span.End()
 	s := services.NewTagService(daos.NewTagDAO())
 	id, _ := strconv.ParseUint(c.Param("post_id"), 10, 32)
 	if tags, err := s.FindAll(uint(id)); err != nil {

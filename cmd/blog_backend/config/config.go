@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	oteltrace "go.opentelemetry.io/otel/trace"
 	"gorm.io/gorm"
 
 	"github.com/spf13/viper"
@@ -32,6 +33,8 @@ type appConfig struct {
 	KeyFile string `mapstructure:"key_file"`
 	// MailerLite API Key
 	APIKey string `mapstructure:"api_key"`
+
+	Tracer oteltrace.Tracer
 }
 
 func LoadConfig(configPaths ...string) error {

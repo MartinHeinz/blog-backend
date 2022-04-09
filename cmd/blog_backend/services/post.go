@@ -1,12 +1,13 @@
 package services
 
 import (
+	"context"
 	"fmt"
 	"github.com/MartinHeinz/blog-backend/cmd/blog_backend/models"
 )
 
 type postDAO interface {
-	Get(id uint) (*models.Post, error)
+	Get(ctx context.Context, id uint) (*models.Post, error)
 	FindAll() []models.Post
 	FindAllByTag(tagName string) []models.Post
 }
@@ -20,8 +21,8 @@ func NewPostService(dao postDAO) *PostService {
 	return &PostService{dao}
 }
 
-func (s *PostService) Get(id uint) (*models.Post, error) {
-	return s.dao.Get(id)
+func (s *PostService) Get(ctx context.Context, id uint) (*models.Post, error) {
+	return s.dao.Get(ctx, id)
 }
 
 func (s *PostService) FindAll() ([]models.Post, error) {
