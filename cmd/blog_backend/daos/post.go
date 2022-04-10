@@ -34,6 +34,7 @@ func (dao *PostDAO) FindAll() []models.Post {
 func (dao *PostDAO) FindAllByTag(tagName string) []models.Post {
 	var posts []models.Post
 	config.Config.DB.
+		Select("title", "text", "posts.id", "posted_on", "next_post_id", "previous_post_id", "author").
 		Joins("JOIN tags ON tags.post_id = posts.id").
 		Where("lower(name) = lower(?) and post_id is not null", tagName).
 		Order("posted_on DESC").
