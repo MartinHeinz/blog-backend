@@ -38,12 +38,8 @@ func GetPosts(c *gin.Context) {
 func GetPostsByTag(c *gin.Context) {
 	s := services.NewPostService(daos.NewPostDAO())
 	tag := c.Param("tag_name")
-	if posts, err := s.FindAllByTag(tag); err != nil {
-		c.AbortWithStatus(http.StatusNotFound)
-		log.Println(err)
-	} else {
-		c.JSON(http.StatusOK, gin.H{
-			"posts": posts,
-		})
-	}
+	posts, _ := s.FindAllByTag(tag)
+	c.JSON(http.StatusOK, gin.H{
+		"posts": posts,
+	})
 }
